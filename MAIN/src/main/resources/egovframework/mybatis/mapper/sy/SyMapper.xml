@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.mvc.mapper.sy.SyMapper">
+	
+	<select id="selectUserList" resultType="Sy1010Dto">
+	SELECT CLIENTID
+		  , USERID
+		  , PASSWORD
+		  , NICKNAME
+		  , EMAIL
+		  , AUTHCODE
+		  , MENUTYPE
+		  , REGDATE
+		  , MODDATE
+		  , useYn
+		FROM HJOY.HYUSERS
+	</select>
+
+</mapper>
