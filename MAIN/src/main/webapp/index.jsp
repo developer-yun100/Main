@@ -14,6 +14,7 @@ $(document).ready(function() {
 
 function signUp(){
 	window.open("/sy/sy1010pop.yh", "로그인", op1);
+	
 }
 
 </script>
