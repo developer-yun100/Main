@@ -135,42 +135,40 @@ function loginpop(){
 <!-- 중단 채널 홍보 글  -->
 <script>
 		
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
+	var tag = document.createElement('script');
+	tag.src = "https://www.youtube.com/iframe_api";
+	
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	
+	var player;
+	var done = false;
 
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-
-function onYouTubeIframeAPIReady() {
-	player = new YT.Player('player', { // ëìì íê²½ ì¤ì 
-             height: '250',
-          	 width: '700',
-          	 videoId: "6I19wdqajEU",
-          	 events: { 'onReady': onPlayerReady,
-            		   'onStateChange': onPlayerStateChange
-          			 }
-    });
-}
-
-function onPlayerReady(event) {
-	event.target.playVideo(); // í´ë¹ ëìì íë ì´ ì¬ì
-}
-
-var done = false;
-
-function onPlayerStateChange(event) {
-	if (event.data == YT.PlayerState.PLAYING && !done) {
-		//  setTimeout(stopVideo, 6000); // ì¬ìí 6ì´ê° ì§ëë©´ ì¬ì ë©ì¶¤
-		done = true; 
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', { // 유튜브 인스턴스 호출 div id=player
+	             height: '250',
+	          	 width: '700',
+	          	 videoId: "6I19wdqajEU",
+	          	 events: { 'onReady': onPlayerReady,
+	            		   'onStateChange': onPlayerStateChange
+	          			 }
+	    });
 	}
-}
-
-function stopVideo() {
-	player.stopVideo();
-}
-		
+	
+	function onPlayerReady(event) {
+		event.target.playVideo(); // 자동 플레이 크롬 x
+	}
+	
+	function onPlayerStateChange(event) {
+		if (event.data == YT.PlayerState.PLAYING && !done) {
+			//  setTimeout(stopVideo, 6000); //  6초
+			done = true; 
+		}
+	}
+	
+	function stopVideo() {
+		player.stopVideo();
+	}
 
 </script>
 	<br />
