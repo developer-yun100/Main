@@ -9,15 +9,8 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 @Mapper("SyMapper")
 public interface SyMapper {
 	
-	// test
+	// user info select
 	public List<Sy1010Dto> selectUserList();
-	
-	// 로그인
-	public List<Sy1010Dto> loginCheck(Sy1010Dto param);
-	
-	// 회원가입
 	public int signUp(Sy1010Dto param);
-	
-	
 	
 }
