@@ -13,7 +13,22 @@
 		  , REGDATE
 		  , MODDATE
 		  , useYn
-		FROM HJOY.HYUSERS
+	  FROM HYUSERS
+	</select>
+	
+	<select id="loginCheck" resultType="Sy1010Dto">
+	SELECT CLIENTID as clientId
+		 , USERID as userId
+		 , NICKNAME as nickName
+		 , EMAIL as email
+		 , AUTHCODE as authCode
+		 , MENUTYPE as menuType
+		 , REGDATE as regDate
+		 , MODDATE as modDate
+		 , useYn as useYn
+	  FROM HYUSERS
+	 WHERE userId = #{userId}
+	   AND passWord = #{passWord}
 	</select>
 	
 	<insert id="signUp">
@@ -41,5 +56,7 @@
 			 'Y' )
 	
 	</insert>
+	
+	
 	
 </mapper>
