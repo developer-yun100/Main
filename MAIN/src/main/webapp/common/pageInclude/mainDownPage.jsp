@@ -11,7 +11,7 @@
 <body>
 <br />
 <br />
-	<!-- 하단 알림  -->
+	<!-- 하단 알림   -->
 	<div class="ui inverted vertical footer segment">
 		<div class="ui container">
 			<div class="ui stackable inverted divided equal height stackable grid">

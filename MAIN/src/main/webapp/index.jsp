@@ -13,8 +13,14 @@ $(document).ready(function() {
 });
 
 function signUp(){
-	window.open("/sy/sy1010pop.yh", "로그인", op1);
+
+	window.open("/sy/sy1010pop.yh", "회원가입", op1);
 	
+}
+
+function loginpop(){
+	window.open("/sy/sy1011pop.yh", "로그인", op3);
+
 }
 
 </script>
@@ -92,6 +98,7 @@ function signUp(){
 	<div class="ui vertical stripe segment">
 		<div class="ui text container">
 			<h3 class="ui header">카운터사이드 채널</h3>
+			<div id="player"></div>
 			<p>
 				갓겜 카운터사이드 미래의 사장님들을 모십니다.
 				커뮤니티, 이벤트 정보, 공략, 가이드를 한번에 보고싶다고?! 
@@ -125,8 +132,47 @@ function signUp(){
 		<br />
 		<br />
 	</div>
-	<!-- 중단 채널 홍보 글  -->
+<!-- 중단 채널 홍보 글  -->
+<script>
+		
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
 
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', { // ëìì íê²½ ì¤ì 
+             height: '250',
+          	 width: '700',
+          	 videoId: "6I19wdqajEU",
+          	 events: { 'onReady': onPlayerReady,
+            		   'onStateChange': onPlayerStateChange
+          			 }
+    });
+}
+
+function onPlayerReady(event) {
+	event.target.playVideo(); // í´ë¹ ëìì íë ì´ ì¬ì
+}
+
+var done = false;
+
+function onPlayerStateChange(event) {
+	if (event.data == YT.PlayerState.PLAYING && !done) {
+		//  setTimeout(stopVideo, 6000); // ì¬ìí 6ì´ê° ì§ëë©´ ì¬ì ë©ì¶¤
+		done = true; 
+	}
+}
+
+function stopVideo() {
+	player.stopVideo();
+}
+		
+
+</script>
 	<br />
 	<br />
 </div>

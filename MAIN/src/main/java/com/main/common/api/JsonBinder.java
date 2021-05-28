@@ -36,14 +36,11 @@ public class JsonBinder {
 		} else { // 트랜잭션 처리 실패
 			param = "000A";
 		}
-		System.out.println("jsonBainder param" + param);
 		Gson gson = new Gson();
 		jsonObject.put("data", param);
 		String json = gson.toJson(jsonObject);
 		
-		
 		entityMap.put("data", json);
-		System.out.println("entityMap param" + entityMap);
 		return entityMap;
 	}
 	
