@@ -15,5 +15,31 @@
 		  , useYn
 		FROM HJOY.HYUSERS
 	</select>
-
+	
+	<insert id="signUp">
+		INSERT INTO HYUSERS (
+            CLIENTID
+          , USERID
+          , PASSWORD
+          , NICKNAME
+          , EMAIL
+          , AUTHCODE
+          , MENUTYPE
+          , REGDATE
+          , MODDATE
+          , USEYN
+          ) 
+			VALUES ( '01',
+			 #{userId},
+			 #{passWord},
+			 #{nickName},
+			 #{email},
+			 '00000AH',
+			 'A',
+			 to_char(sysdate, 'yyyy-mm-dd'),
+			 '',
+			 'Y' )
+	
+	</insert>
+	
 </mapper>

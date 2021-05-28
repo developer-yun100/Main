@@ -37,7 +37,7 @@ $(document).ready(function() {
 						<a class="ui button" onclick="">로그인</a>
 					</div>
 					<div class="item">
-						<a class="ui primary button" onclick="">회원가입</a>
+						<a class="ui primary button" onclick="signUp();">회원가입</a>
 					</div>
 				</div>
 				<a class="item" onclick="">채널</a>

@@ -16,6 +16,7 @@
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>*.yh</url-pattern>
+		<url-pattern>*.act</url-pattern>
 	</filter-mapping>
     
 	<filter>
@@ -25,6 +26,7 @@
 	<filter-mapping>
 		<filter-name>HTMLTagFilter</filter-name>
 		<url-pattern>*.yh</url-pattern>
+		<url-pattern>*.act</url-pattern>
 	</filter-mapping>
     
 	<context-param>
@@ -49,6 +51,7 @@
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>*.yh</url-pattern>
+		<url-pattern>*.act</url-pattern>
 	</servlet-mapping>
     
 	<welcome-file-list>

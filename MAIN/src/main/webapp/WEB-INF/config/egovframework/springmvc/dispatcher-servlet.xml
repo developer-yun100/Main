@@ -17,6 +17,20 @@
         <property name="webBindingInitializer">
             <bean class="egovframework.example.cmmn.web.EgovBindingInitializer"/>
         </property>
+        <!-- controller return -> auto Map / List JSON -->
+        <property name="messageConverters">
+			<list>    
+		    	<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		         <property name="supportedMediaTypes">
+		         	<list>
+		                 <value>text/html;charset=UTF-8</value>
+		                 <value>application/json;charset=UTF-8</value>
+		             </list>
+		         </property>
+		     	</bean>            
+		     </list>
+		 </property> 
+		 
     </bean>
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
         <property name="interceptors">
@@ -26,7 +40,6 @@
             </list>
         </property>
     </bean>
-    
      <bean id="authInterceptor" class="com.util.web.Interceptor"/>
     
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
@@ -34,7 +47,11 @@
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="language" />
     </bean>
-
+    <!-- Json return  -->
+	<!-- <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+		 <property name="content" value="text/html;charset=UTF-8"/>
+	</bean> -->
+	
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="cmmn/egovError"/>
         <property name="exceptionMappings">

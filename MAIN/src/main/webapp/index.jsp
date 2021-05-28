@@ -9,16 +9,13 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	console.log("제이쿼리 테스트");
-	CKEDITOR.replace('boardArea', {
-		width: 670
-	   ,height: 500
-	});
+	
 });
 
-function test(){
-	location.href="sy/sy1010.yh"
+function signUp(){
+	window.open("/sy/sy1010pop.yh", "로그인", op1);
 }
+
 </script>
 <title>메인</title>
 </head>

@@ -10,6 +10,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 public interface SyMapper {
 	
 	// user info select
-	List<Sy1010Dto> selectUserList();
+	public List<Sy1010Dto> selectUserList();
+	public int signUp(Sy1010Dto param);
 	
 }

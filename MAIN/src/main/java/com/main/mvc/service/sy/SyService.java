@@ -20,5 +20,12 @@ public class SyService {
 		return syMapper.selectUserList();
 	}
 	
+	public int signUp(Sy1010Dto param) {
+		System.out.println("서비스 작동");
+		int result = 0;
+		result = syMapper.signUp(param);
+		return result;
+	}
+	
 	
 }
