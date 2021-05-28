@@ -25,6 +25,7 @@ public class JsonBinder {
 		return json;
 	}
 	
+	// 성공여부 map return controller -> ajax 
 	public Map<String, Object> jsonEntity(Object param){
 		
 		JSONObject jsonObject = new JSONObject();
@@ -33,17 +34,15 @@ public class JsonBinder {
 		Integer code = new Integer((int)param);
 		if(code == 1) { // 정상
 			param = "0000";
-		} else { // 트랜잭션 처리 실패
+		} else { // 트랜잭션 처리 실패 / 로그아웃
 			param = "000A";
 		}
-		System.out.println("jsonBainder param" + param);
+		
 		Gson gson = new Gson();
 		jsonObject.put("data", param);
 		String json = gson.toJson(jsonObject);
 		
-		
 		entityMap.put("data", json);
-		System.out.println("entityMap param" + entityMap);
 		return entityMap;
 	}
 	

@@ -12,9 +12,17 @@ $(document).ready(function() {
 	
 });
 
+// 회원가입 / 로그인 호출 HTML은 include에
+
 function signUp(){
-	window.open("/sy/sy1010pop.yh", "로그인", op1);
+	window.open("/sy/sy1010pop.yh", "회원가입", op1);
 }
+
+function loginpop(){
+	window.open("/sy/sy1011pop.yh", "로그인", op3);
+}
+
+
 
 </script>
 <title>메인</title>
@@ -91,14 +99,18 @@ function signUp(){
 	<div class="ui vertical stripe segment">
 		<div class="ui text container">
 			<h3 class="ui header">카운터사이드 채널</h3>
-			<p>
-				갓겜 카운터사이드 미래의 사장님들을 모십니다.
+			<div id="player"></div>
+			<br />
+			<p> 
+				노래 좋아요! 갓겜 카운터사이드 미래의 사장님들을 모십니다.
 				커뮤니티, 이벤트 정보, 공략, 가이드를 한번에 보고싶다고?! 
 				그러면 바로!! 채널 구독!! 카운터사이드!!
 			</p>
 			<img class="ui avatar image" src="<c:url value=''/>" />
+		    <br />
 		    <span><b>뚜뚜와</b></span>
-			
+		    
+		    
 			<h4 class="ui horizontal header divider"> </h4> <!-- 라인 만들까 말까 -->
 			
 			<h3 class="ui header">유니티 게임 채널</h3>
@@ -124,7 +136,50 @@ function signUp(){
 		<br />
 		<br />
 	</div>
-	<!-- 중단 채널 홍보 글  -->
+<!-- 중단 채널 홍보 글  -->
+
+
+<!-- youtube 연동 videoId : url ex) v='6I19wdqajEU' <div id="player"></div> 추가 -->
+<script>
+		
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', { // 동영상 환경 설정
+             height: '250',
+          	 width: '700',
+          	 videoId: "6I19wdqajEU",
+          	 events: { 'onReady': onPlayerReady,
+            		   'onStateChange': onPlayerStateChange
+          			 }
+    });
+}
+
+function onPlayerReady(event) {
+	event.target.playVideo(); // 해당 동영상 플레이 재생
+}
+
+var done = false;
+
+function onPlayerStateChange(event) {
+	if (event.data == YT.PlayerState.PLAYING && !done) {
+		//  setTimeout(stopVideo, 6000); // 재생후 6초가 지나면 재생 멈춤
+		done = true; 
+	}
+}
+
+function stopVideo() {
+	player.stopVideo();
+}
+		
+
+</script>
 
 	<br />
 	<br />

@@ -1,7 +1,5 @@
 package com.main.mvc.controller.sy;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -30,13 +28,37 @@ public class SyController {
 		return "/sy/sy1010pop";
 	}
 	
-	@RequestMapping(value = "/signUp.act")
+	// 로그인 팝업
+	@RequestMapping(value = "/sy1011pop.yh")
+	public String sy1011(Model model) {
+		return "/sy/sy1011pop";
+	}
+	
+	// 로그인
+	@RequestMapping(value = "/loginCheck.act")
 	@ResponseBody
-	public Map<String, Object> signUp(@RequestBody ParamDto params, Model model) {
+	public Map<String, Object> loginCheck(@RequestBody ParamDto params, Model model) throws Exception {
 		// form data
 		Sy1010Dto form = params.getForm(Sy1010Dto.class);
 		JsonBinder entity = new JsonBinder();
-		
+		return entity.jsonEntity(syService.loginCheck(form));
+	}
+	
+	// 로그아웃
+	@RequestMapping(value = "/logoutCheck.act")
+	public String logoutCheck(Model model) throws Exception {
+		// form data
+		syService.logoutCheck();
+		return "/index";
+	}
+	
+	// 회원가입
+	@RequestMapping(value = "/signUp.act")
+	@ResponseBody
+	public Map<String, Object> signUp(@RequestBody ParamDto params, Model model) throws Exception {
+		// form data
+		Sy1010Dto form = params.getForm(Sy1010Dto.class);
+		JsonBinder entity = new JsonBinder();
 		return entity.jsonEntity(syService.signUp(form));
 	}
 	

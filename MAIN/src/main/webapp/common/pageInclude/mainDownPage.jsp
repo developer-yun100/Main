@@ -10,6 +10,11 @@
 </head>
 <body>
 <br />
+<%-- <audio id="player" controls autoplay>
+    <source src="<c:url value='/images/egovframework/indexImage/shadowsofmemory.mp3'/>" type="audio/mp3" />
+</audio> --%>
+
+<br />
 <br />
 	<!-- 하단 알림  -->
 	<div class="ui inverted vertical footer segment">

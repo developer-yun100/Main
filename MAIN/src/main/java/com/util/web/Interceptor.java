@@ -8,13 +8,14 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class Interceptor extends HandlerInterceptorAdapter {
 	
-private static final Logger LOG = LoggerFactory.getLogger(Interceptor.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Interceptor.class);
 	
 	// URL 요청시 세션 및 권한 체크
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("인터셉터 테스트");
+		String requestUrl = request.getRequestURI();
+		LOG.debug("request URL : " + requestUrl);
 		return true;
 	}
 }
