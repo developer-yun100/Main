@@ -4,7 +4,10 @@
 <configuration>
     <typeAliases>
 		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-		<typeAlias alias="Sy1010Dto" type="com.main.mvc.dto.sy.Sy1010Dto"/>
+		<!-- <typeAlias alias="Sy1010Dto" type="com.main.mvc.dto.sy.Sy1010Dto"/>
+		<typeAlias alias="Bo1010Dto" type="com.main.mvc.dto.bo.Bo1010Dto"/> -->
+		<!-- dto 패키지 한번에 -->
+		<package name="com.main.mvc.dto" />
 		<!-- <typeAlias alias="sampleVO" type="egovframework.example.sample.service.SampleVO"/> -->
     </typeAliases>
 </configuration>

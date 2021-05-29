@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.mvc.mapper.bo.BoMapper">
+	
+	<select id="channelList" resultType="Bo1010Dto">
+		SELECT CHID as chId
+		     , CHNO as chNo
+		     , CHNAME as chName
+		     , CHOPENNAME as chOpenName
+		     , CHUSERCOUNT as chUserCount
+		     , REGDATE as regDate
+		     , MODDATE as modDate
+		     , USEYN as useYn
+		  FROM HYCHANNEL
+	</select>
+	
+</mapper>

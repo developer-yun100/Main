@@ -22,6 +22,12 @@ public class SyController {
 	@Resource
 	SyService syService;
 	
+	// 시스템 관리 화면
+	@RequestMapping(value = "/sy1010.yh")
+	public String sy1020(Model model) {
+		return "/sy/sy1010";
+	}
+
 	// 회원가입 팝업
 	@RequestMapping(value = "/sy1010pop.yh")
 	public String sy1010(Model model) {

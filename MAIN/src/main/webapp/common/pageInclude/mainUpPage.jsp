@@ -30,6 +30,14 @@ function logout(){
 	window.location.reload(true);
 }
 
+function system(){
+	location.href="/sy/sy1010.yh";
+}
+
+function channel(){
+	location.href="/bo/bo1010.yh";
+}
+
 </script>
 <title></title>
 </head>
@@ -49,7 +57,7 @@ function logout(){
 					</div>
 				</c:if>
 				<c:if test="${not empty sessionScope.S_USERINFO.userId and sessionScope.S_USERINFO.userId ne ''}">
-					<a class="item" onclick="">채널</a>
+					<a class="item" onclick="channel();">채널</a>
 					<a class="item">워크 비즈니스</a>
 					<a class="item">가이드</a>
 					<a class="item" onclick="logout();">로그아웃</a>
@@ -59,7 +67,7 @@ function logout(){
 	</div>
 	<!-- fade toolBar -->
 	
-	<!-- ìë¨ ë©ë´ì íì´í -->
+	<!-- 상단 UI -->
 	<div class="ui inverted vertical masthead center aligned segment">
 	    <div class="ui container">
 		    <div class="ui large secondary inverted pointing menu">
@@ -67,9 +75,12 @@ function logout(){
 			    	<i class="sidebar icon"></i>
 			    </a>
 			    <a class="active item" onclick="location.href='../index.jsp'">홈</a>
-				<a class="item" onclick="">채널</a>
+				<a class="item" onclick="channel();">채널</a>
 				<a class="item">워크 비즈니스</a>
 				<a class="item">가이드</a>
+				<c:if test="${not empty sessionScope.S_USERINFO.userId and sessionScope.S_USERINFO.userId eq 'admin'}">
+					<a class="item" onclick="system();">시스템 설정</a>
+				</c:if>
 				<div class="right item">
 					<c:if test="${empty sessionScope.S_USERINFO.userId or sessionScope.S_USERINFO.userId eq ''}">
 						<a class="ui inverted button" onclick="loginpop();">로그인</a>&nbsp;&nbsp;

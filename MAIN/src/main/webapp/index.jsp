@@ -20,7 +20,6 @@ function signUp(){
 
 function loginpop(){
 	window.open("/sy/sy1011pop.yh", "로그인", op3);
-
 }
 
 </script>

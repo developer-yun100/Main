@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/egovframework/sample.css'/>" />
-<title>Basic Sample</title>
+<title>허가되지 않음</title>
 </head>
 
 <body>
