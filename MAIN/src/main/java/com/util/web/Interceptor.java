@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.main.common.session.UserInfoSession;
+
 public class Interceptor extends HandlerInterceptorAdapter {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(Interceptor.class);
@@ -16,6 +18,14 @@ public class Interceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		String requestUrl = request.getRequestURI();
 		LOG.debug("request URL : " + requestUrl);
+		
+		if(!UserInfoSession.isLogin()) {
+			if(requestUrl.contains("/bo")) {
+				response.sendRedirect("/sy/interceptor.yh");
+				return false;
+			}
+		} else {
+		}
 		return true;
 	}
 }

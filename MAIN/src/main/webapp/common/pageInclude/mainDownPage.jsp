@@ -34,7 +34,7 @@
 				</div>
 				<div class="seven wide column">
 					<h4 class="ui inverted header">오시는길</h4>
-					<p>서울특별시 서초구 서초동 강남대로 381 두산베어스텔 2021호 Team 'YH' Company</p>
+					<p>서울특별시 서초구 서초동 강남대로 381 두산베어스텔 2021호 Yun Company</p>
 				</div>
 			</div>
 		</div>

@@ -24,12 +24,6 @@ $(document).ready(function() {
 
 });
 
-function logout(){
-	location.href="/sy/logoutCheck.act";
-	alert("로그아웃 됬습니다.");
-	window.location.reload(true);
-}
-
 function system(){
 	location.href="/sy/sy1010.yh";
 }
@@ -58,8 +52,6 @@ function channel(){
 				</c:if>
 				<c:if test="${not empty sessionScope.S_USERINFO.userId and sessionScope.S_USERINFO.userId ne ''}">
 					<a class="item" onclick="channel();">채널</a>
-					<a class="item">워크 비즈니스</a>
-					<a class="item">가이드</a>
 					<a class="item" onclick="logout();">로그아웃</a>
 					&nbsp;&nbsp; <h3 style="margin-top: 10px;">닉네임 : ${sessionScope.S_USERINFO.nickName}</h3>
 				</c:if>

@@ -14,4 +14,100 @@
 		  FROM HYCHANNEL
 	</select>
 	
+	<select id="channelHeader" resultType="Bo1010Dto" parameterType="Bo1010Dto">
+		SELECT CHID as chId
+		     , CHNO as chNo
+		     , CHNAME as chName
+		     , CHOPENNAME as chOpenName
+		     , CHUSERCOUNT as chUserCount
+		     , REGDATE as regDate
+		     , MODDATE as modDate
+		     , USEYN as useYn
+		  FROM HYCHANNEL
+		 WHERE CHID = #{chId}
+	</select>
+	
+	<select id="channelDetailList" resultType="Bo1010Dto">
+		SELECT CHID as chId
+		     , CHDEID as chDeId
+		     , CHDENO as chDeNo
+		     , CHNAME as chName
+		     , REGUSERID as regUserId
+		     , REGNICKNAME as regNickName
+		     , TITLE as title
+		     , CONTENT as content
+		     , INCHECK as inCheck
+		     , REGDATE as regDate
+		     , MODDATE as modDate
+		     , USEYN as useYn
+		  FROM HYCHANNELDE
+		 WHERE useYn = 'Y'
+		   AND CHID = #{chId}
+	</select>
+	
+	<select id="channelDetatilData" resultType="Bo1010Dto">
+		SELECT CHID as chId
+		     , CHDEID as chDeId
+		     , CHDENO as chDeNo
+		     , CHNAME as chName
+		     , REGUSERID as regUserId
+		     , REGNICKNAME as regNickName
+		     , TITLE as title
+		     , CONTENT as content
+		     , INCHECK as inCheck
+		     , REGDATE as regDate
+		     , MODDATE as modDate
+		     , USEYN as useYn
+		  FROM HYCHANNELDE
+		 WHERE useYn = 'Y'
+		   AND CHDEID = #{chDeId}
+	</select>
+	
+	<select id="commentList" resultType="Bo1010Dto">
+		SELECT cdc.chdeId as chdeId
+		     , cdc.chdeCommentId as chdeCommentId
+		     , cdc.regUserId as regUserId
+		     , cdc.regNickName as regNickName
+		     , cdc.deComment as deComment
+		     , cdc.commentLine as commentLine
+		     , cdc.regDate as regDate
+		     , cdc.modDate as modDate
+		     , us.profileImg as profileImg
+		  FROM HYCHANNELDECOMMENT cdc
+		  LEFT OUTER JOIN HYUSERS us
+		    ON cdc.REGUSERID = us.userId
+		   AND us.useYn = 'Y' 
+		 WHERE cdc.useYn = 'Y'
+		   AND chdeId = #{chDeId}
+		 ORDER BY cdc.commentLine ASC
+	</select>
+	
+	<select id="commentConut" resultType="Bo1010Dto"> 
+		SELECT COUNT(*) as commentCount
+		  FROM HYCHANNELDECOMMENT
+		 WHERE chdeId = #{chDeId}
+	</select>
+	
+	<insert id="commentInsert">
+		INSERT INTO HYCHANNELDECOMMENT 
+	          ( CHDEID
+	          , CHDECOMMENTID
+	          , REGUSERID
+	          , REGNICKNAME
+	          , DECOMMENT
+	          , COMMENTLINE
+	          , REGDATE
+	          , MODDATE
+	          , USEYN) 
+	   VALUES ( #{chDeId},
+	            reqSeqId('CHDECOM'),
+	            #{regUserId},
+	            #{regNickName},
+	            #{deComment},
+	            #{commentLine},
+	            to_char(sysdate, 'YYYY-MM-DD'),
+	            '',
+	            'Y')
+	</insert>
+	
 </mapper>

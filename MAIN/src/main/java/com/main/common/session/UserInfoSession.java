@@ -2,6 +2,8 @@ package com.main.common.session;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -10,6 +12,7 @@ import com.main.mvc.dto.sy.Sy1010Dto;
 public class UserInfoSession {
 		// 세션 키 (유저 타입)
 		public static final String LOGIN_USER = "S_USERINFO";
+		private static final Logger LOG = LoggerFactory.getLogger(UserInfoSession.class);
 		
 		// 세션 객체 생성
 		public static HttpSession getSession() {
@@ -29,11 +32,11 @@ public class UserInfoSession {
 		// 로그인 세션 정보부여
 		public static Boolean setLoginSuccess(Sy1010Dto param) {
 			try {
+				LOG.debug("Login Info : "+ param.toString());
 				getSession().setAttribute(LOGIN_USER, param);
 				getSession().setMaxInactiveInterval(3000);
 				return true;
 			} catch (Exception e) {
-				System.out.println("에러발생 : " + e.toString());
 				return false;
 			}
 		}

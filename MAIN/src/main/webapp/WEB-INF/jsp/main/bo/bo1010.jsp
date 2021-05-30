@@ -7,6 +7,18 @@
 <html>
 <head>
 	<jsp:include page="/common/include.jsp" flush="false"/>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+});
+
+function pageLocation(param){
+	location.href="/bo/bo1011.yh?chId="+param;
+}
+
+
+</script>
 <title>채널 목록</title>
 </head>
 <body>
@@ -37,11 +49,11 @@
 			</thead>
 			<tbody>
 				<c:forEach var="dto" items="${channelList}" varStatus="status">
-					<tr>
-					<td>${dto.chOpenName}</td>
-					<td>${dto.chName}</td>
-					<td class="right aligned">${dto.chUserCount}</td>
-				</tr>
+					<tr onclick="pageLocation('${dto.chId}');">
+						<td>${dto.chOpenName}</td>
+						<td>${dto.chName}</td>
+						<td class="right aligned">${dto.chUserCount}</td>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>

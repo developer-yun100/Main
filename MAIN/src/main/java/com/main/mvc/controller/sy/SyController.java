@@ -22,6 +22,12 @@ public class SyController {
 	@Resource
 	SyService syService;
 	
+	// 인터셉터
+	@RequestMapping(value = "/interceptor.yh")
+	public String interceptorPage(Model model) {
+		return "/interceptor/interceptorPage";
+	}
+	
 	// 시스템 관리 화면
 	@RequestMapping(value = "/sy1010.yh")
 	public String sy1020(Model model) {
@@ -50,7 +56,7 @@ public class SyController {
 		return entity.jsonEntity(syService.loginCheck(form));
 	}
 	
-	// 로그아웃
+	// 로그아웃 나중에 수정
 	@RequestMapping(value = "/logoutCheck.act")
 	public String logoutCheck(Model model) throws Exception {
 		// form data
