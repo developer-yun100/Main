@@ -6,10 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
+import com.util.web.Interceptor;
 
 public class JsonBinder {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(JsonBinder.class);
 	
 	// response json - String
 	public String resJson(Object param){
@@ -25,8 +30,9 @@ public class JsonBinder {
 		return json;
 	}
 	
+	//service
 	public Map<String, Object> jsonEntity(Object param){
-		
+		LOG.debug("JSON Binding Code => " + param);
 		JSONObject jsonObject = new JSONObject();
 		Map<String, Object> entityMap = new HashMap<String, Object>();
 		

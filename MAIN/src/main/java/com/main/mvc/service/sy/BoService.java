@@ -38,6 +38,16 @@ public class BoService {
 		return boMapper.commentList(param);
 	}
 	
+	// 게시글 작성
+	@Transactional
+	public int contentInsert(Bo1010Dto param) throws Exception {
+		int result = 0;
+		Bo1010Dto contentConut = boMapper.contentConut(param);
+		param.setChNo(contentConut.getContentCount());
+		result = boMapper.contentInsert(param);
+		return result;
+	}
+	
 	// 댓글 입력
 	@Transactional
 	public int commentInsert(Bo1010Dto param) throws Exception {
@@ -45,6 +55,14 @@ public class BoService {
 		Bo1010Dto commentConut = boMapper.commentConut(param);
 		param.setCommentLine(commentConut.getCommentCount());
 		result = boMapper.commentInsert(param);
+		return result;
+	}
+	
+	// 조회수 체크
+	@Transactional
+	public int contentIncheck(Bo1010Dto param) throws Exception {
+		int result = 0;
+		result = boMapper.contentIncheck(param);
 		return result;
 	}
 	

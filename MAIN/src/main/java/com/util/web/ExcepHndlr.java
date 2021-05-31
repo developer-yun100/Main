@@ -8,7 +8,7 @@ import egovframework.rte.fdl.cmmn.exception.handler.ExceptionHandler;
 
 public class ExcepHndlr implements ExceptionHandler {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(EgovSampleExcepHndlr.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ExcepHndlr.class);
 
 	@Override
 	public void occur(Exception ex, String packageName) {

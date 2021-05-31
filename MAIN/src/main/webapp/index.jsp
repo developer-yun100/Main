@@ -23,15 +23,45 @@ function loginpop(){
 }
 
 function logout(){
-	console.log("로그아웃 했음");
-	location.href="/sy/logoutCheck.act";
+	
+	var jsonData ={};
+    jsonData["form"] = $('form[name="pageForm"]').serializeObject();
+	
+    $.ajax({
+		url : '/sy/logoutCheck.act',
+		type : "post",
+		async : true,
+		dataType : 'json',
+		contentType : "application/json; charset=UTF-8",
+		data : JSON.stringify(jsonData),
+		success : function(response) {
+			var result = JSON.parse(response.data);
+			if(result.data == 0000){
+				alert("로그아웃 했습니다.");
+				location.reload();
+			} else {
+				alert("일시적인 장애로 인한 처리불가");
+			}
+			
+			/* for (var i = 0; i< result.length; i++) {
+			    console.log(result[i]);
+			}  */
+			
+		},
+		error : function(request, status, error) {
+			console.log("일시적인 장애로 인한 처리불가");
+		}
+	});
+	
 }
 
 </script>
 <title>메인</title>
 </head>
 <body>
+<form name="pageForm">
 
+</form>
 <jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
 
 <div class="pusher">

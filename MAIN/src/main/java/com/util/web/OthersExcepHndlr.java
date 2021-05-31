@@ -11,6 +11,6 @@ public class OthersExcepHndlr implements ExceptionHandler {
 
 	@Override
 	public void occur(Exception exception, String packageName) {
-		LOGGER.debug(" OthersExcepHndlr 테스트");
+		LOGGER.debug("ERROR : " + exception.getMessage() + "\n packageName : " + packageName);
 	}
 }

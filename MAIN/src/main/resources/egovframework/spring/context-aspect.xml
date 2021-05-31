@@ -4,8 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
+	<!-- execution(* com.main.mvc..*Service.*(..))  -->
 	<aop:config>
-		<aop:pointcut id="serviceMethod" expression="execution(* com.main..mvc.*Service.*(..))" />
+		<aop:pointcut id="serviceMethod" expression="execution(* com.main.mvc..*.*(..))" />
 
 		<aop:aspect ref="exceptionTransfer">
 			<aop:after-throwing throwing="exception" pointcut-ref="serviceMethod" method="transfer" />
@@ -32,7 +33,7 @@
 		</property>
 		<property name="handlers">
 			<list>
-				<ref bean="egovHandler" />
+				<ref bean="excepHndlr" />
 			</list>
 		</property>
 	</bean>
@@ -53,7 +54,7 @@
 		</property>
 	</bean>
 
-	<bean id="egovHandler" class="com.util.web.ExcepHndlr" />
+	<bean id="excepHndlr" class="com.util.web.ExcepHndlr" />
 	<bean id="otherHandler" class="com.util.web.OthersExcepHndlr" />	
 	
 </beans>

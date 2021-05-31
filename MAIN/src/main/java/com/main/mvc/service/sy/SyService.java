@@ -38,9 +38,13 @@ public class SyService {
 	}
 
 	// 로그아웃
-	public String logoutCheck() throws Exception {
+	public int logoutCheck() throws Exception {
+		int result = 0;
 		UserInfoSession.logout();
-		return null;
+		if(!UserInfoSession.isLogin()) {
+			result = 1;
+		}
+		return result;
 	}
 	
 	// 회원가입

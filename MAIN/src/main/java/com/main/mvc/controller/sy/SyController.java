@@ -56,12 +56,13 @@ public class SyController {
 		return entity.jsonEntity(syService.loginCheck(form));
 	}
 	
-	// 로그아웃 나중에 수정
+	// 로그아웃
 	@RequestMapping(value = "/logoutCheck.act")
-	public String logoutCheck(Model model) throws Exception {
+	@ResponseBody
+	public Map<String, Object> logoutCheck(@RequestBody ParamDto params, Model model) throws Exception {
 		// form data
-		syService.logoutCheck();
-		return "/index";
+		JsonBinder entity = new JsonBinder();
+		return entity.jsonEntity(syService.logoutCheck());
 	}
 	
 	// 회원가입

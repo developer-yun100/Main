@@ -23,5 +23,6 @@ public @Data class Bo1010Dto {
 	 private String commentLine;
 	 private String profileImg;
 	 private String commentCount;
+	 private String contentCount;
 	 
 }

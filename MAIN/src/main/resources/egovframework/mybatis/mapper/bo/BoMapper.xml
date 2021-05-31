@@ -36,13 +36,14 @@
 		     , REGNICKNAME as regNickName
 		     , TITLE as title
 		     , CONTENT as content
-		     , INCHECK as inCheck
+		     , NVL(INCHECK, 0) as inCheck
 		     , REGDATE as regDate
 		     , MODDATE as modDate
 		     , USEYN as useYn
 		  FROM HYCHANNELDE
 		 WHERE useYn = 'Y'
 		   AND CHID = #{chId}
+		 ORDER BY chDeNo DESC
 	</select>
 	
 	<select id="channelDetatilData" resultType="Bo1010Dto">
@@ -109,5 +110,48 @@
 	            '',
 	            'Y')
 	</insert>
+	
+	<select id="contentConut" resultType="Bo1010Dto"> 
+		SELECT COUNT(*) + 1 as contentCount
+		  FROM HYCHANNELDE
+		 WHERE chId = #{chId}
+	</select>
+	
+	<insert id="contentInsert">
+		INSERT INTO HYCHANNELDE 
+		          ( CHID
+		          , CHDEID
+		          , CHDENO
+		          , CHNAME
+		          , REGUSERID
+		          , REGNICKNAME
+		          , TITLE
+		          , CONTENT
+		          , REGDATE
+		          , MODDATE
+		          , USEYN
+		          , INCHECK) 
+		     VALUES 
+		          ( #{chId}
+		          , reqSeqId('CHDE')
+		          , #{chNo}
+		          , #{chName}
+		          , #{regUserId}
+		          , #{regNickName}
+		          , #{title}
+		          , #{content}
+		          , to_char(sysdate, 'YYYY-MM-DD')
+		          , ''
+		          , 'Y'
+		          , '')
+	</insert>
+	
+	<update id="contentIncheck">
+		UPDATE HYCHANNELDE
+		   SET inCheck = NVL2(inCheck, inCheck+1, 1)
+		 WHERE chDeId = #{chDeId}
+		   AND useYn = 'Y'
+	</update>
+	
 	
 </mapper>

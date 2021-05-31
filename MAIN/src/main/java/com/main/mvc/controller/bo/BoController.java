@@ -24,7 +24,9 @@ public class BoController {
 	BoService boService;
 	
 	@RequestMapping(value = "/bo1013.yh")
-	public String bo1013(Model model) {
+	public String bo1013(Bo1010Dto bo1010Dto, Model model) {
+		Bo1010Dto channelHeader = boService.channelHeader(bo1010Dto);
+		model.addAttribute("channelHeader", channelHeader);
 		return "/bo/bo1013";
 	}
 	
@@ -51,12 +53,23 @@ public class BoController {
 	
 	// 게시글 상세
 	@RequestMapping(value = "/bo1012.yh")
-	public String bo1012(Bo1010Dto bo1010Dto, Model model) {
+	public String bo1012(Bo1010Dto bo1010Dto, Model model) throws Exception {
 		List<Bo1010Dto> commentList = boService.commentList(bo1010Dto);
 		model.addAttribute("commentList", commentList);
 		Bo1010Dto channelDetatilData = boService.channelDetatilData(bo1010Dto);
 		model.addAttribute("channelDetatilData", channelDetatilData);
+		boService.contentIncheck(bo1010Dto);
+		
 		return "/bo/bo1012";
+	}
+	
+	// 게시글 입력
+	@RequestMapping(value = "/contentInsert.act")
+	@ResponseBody
+	public Map<String, Object> contentInsert(@RequestBody ParamDto params, Model model) throws Exception {
+		Bo1010Dto form = params.getForm(Bo1010Dto.class);
+		JsonBinder entity = new JsonBinder();
+		return entity.jsonEntity(boService.contentInsert(form));
 	}
 	
 	// 댓글입력

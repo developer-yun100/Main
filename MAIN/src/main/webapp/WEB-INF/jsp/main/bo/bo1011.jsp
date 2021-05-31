@@ -13,8 +13,8 @@ function contentDetail(param){
 	location.href="/bo/bo1012.yh?chDeId="+param;
 }
 
-function contentPush(){
-	location.href="/bo/bo1013.yh";
+function contentPush(param){
+	location.href="/bo/bo1013.yh?chId="+param;
 }
 
 </script>
@@ -33,9 +33,9 @@ function contentPush(){
 				<i class="search icon"></i>
 			</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="ui inverted red button" onClick="contentPush();">글쓰기</button>
+			<button class="ui inverted red button" onClick="contentPush('${channelHeader.chId}');">글쓰기</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="ui inverted blue button">글쓰기 가이드</button>
+			<button class="ui inverted blue button">구독</button>
 			</div>
 		</div>
 		<h3>${channelHeader.chName} 채널</h3>
