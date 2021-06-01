@@ -1,4 +1,4 @@
-package com.main.mvc.service.sy;
+package com.main.mvc.service.bo;
 
 import java.util.List;
 

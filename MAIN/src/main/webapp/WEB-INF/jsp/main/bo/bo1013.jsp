@@ -11,10 +11,13 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+	
 	CKEDITOR.replace('contentArea', {
 		width: 670
 	   ,height: 500
+	   ,filebrowserUploadUrl : "/bo/fileUpload.act"
 	});
+
 });
 
 
@@ -98,7 +101,7 @@ function insertContent(){
 				</div>
 			</div>
 			<br />
-			<textarea class="form-control" id="contentArea"></textarea>
+			<textarea class="form-control" id="contentArea" name="contentArea"></textarea>
 		</div>
 		<br />
 		<button class="ui primary button" onclick="insertContent();">작성</button>
