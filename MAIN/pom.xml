@@ -130,6 +130,25 @@
             <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc7.jar</systemPath>
         </dependency>
         
+        <dependency>
+            <groupId>com.googlecode.log4jdbc</groupId>
+            <artifactId>log4jdbc</artifactId>
+            <version>1.2</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency> 
+        	<groupId>org.bgee.log4jdbc-log4j2</groupId> 
+        	<artifactId>log4jdbc-log4j2-jdbc4</artifactId> 
+        	<version>1.16</version> 
+        </dependency>
+
+        
         <!-- google json  -->
         <dependency>
 		    <groupId>com.googlecode.json-simple</groupId>
@@ -189,17 +208,6 @@
 		</dependency>
         
         <!-- mysql이나 oracle DB 사용시 아래 설정 추가  
-        <dependency>
-            <groupId>com.googlecode.log4jdbc</groupId>
-            <artifactId>log4jdbc</artifactId>
-            <version>1.2</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         
         <dependency>
             <groupId>commons-dbcp</groupId>

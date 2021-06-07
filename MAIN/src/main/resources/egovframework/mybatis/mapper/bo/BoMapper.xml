@@ -12,6 +12,10 @@
 		     , MODDATE as modDate
 		     , USEYN as useYn
 		  FROM HYCHANNEL
+		 WHERE 1=1
+		 <if test='chName != null and chName != "" '>
+		   AND CHNAME LIKE #{chName} || '%'
+		 </if>
 	</select>
 	
 	<select id="channelHeader" resultType="Bo1010Dto" parameterType="Bo1010Dto">
@@ -43,7 +47,7 @@
 		  FROM HYCHANNELDE
 		 WHERE useYn = 'Y'
 		   AND CHID = #{chId}
-		 ORDER BY chDeNo DESC
+		 ORDER BY TO_NUMBER(chDeNo) DESC
 	</select>
 	
 	<select id="channelDetatilData" resultType="Bo1010Dto">
@@ -153,5 +157,30 @@
 		   AND useYn = 'Y'
 	</update>
 	
+	<select id="channelCount" resultType="Bo1010Dto">
+		SELECT COUNT(*) +1 as channelCount 
+  		  FROM HYCHANNEL
+	</select>
+	
+	<insert id="channelInsert">
+		  INSERT INTO HYCHANNEL 
+		            ( CHID
+		            , CHNO
+		            , CHNAME
+		            , CHOPENNAME
+		            , CHUSERCOUNT
+		            , REGDATE
+		            , MODDATE
+		            , USEYN)
+		       VALUES ( reqSeqId('CH')
+		            , #{channelCount}
+		            , #{chName}
+		            , #{chOpenName}
+		            , '0'
+		            , to_char(sysdate, 'YYYY-MM-DD')
+		            , ''
+		            , 'Y'
+		            )
+	</insert>
 	
 </mapper>

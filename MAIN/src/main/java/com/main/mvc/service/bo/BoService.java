@@ -16,8 +16,8 @@ public class BoService {
 	@Resource
 	BoMapper boMapper;
 	
-	public List<Bo1010Dto> channelList(){
-		return boMapper.channelList();
+	public List<Bo1010Dto> channelList(Bo1010Dto param){
+		return boMapper.channelList(param);
 	}
 	
 	// 상세
@@ -36,6 +36,16 @@ public class BoService {
 	
 	public List<Bo1010Dto> commentList(Bo1010Dto param){
 		return boMapper.commentList(param);
+	}
+	
+	// 채널 개설
+	@Transactional
+	public int channelInsert(Bo1010Dto param) {
+		int result = 0;
+		Bo1010Dto channelCount = boMapper.channelCount(param);
+		param.setChannelCount(channelCount.getChannelCount());
+		result = boMapper.channelInsert(param);
+		return result;
 	}
 	
 	// 게시글 작성

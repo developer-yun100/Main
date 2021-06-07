@@ -24,5 +24,6 @@ public @Data class Bo1010Dto {
 	 private String profileImg;
 	 private String commentCount;
 	 private String contentCount;
+	 private String channelCount;
 	 
 }

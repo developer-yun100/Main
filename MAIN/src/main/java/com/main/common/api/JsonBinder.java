@@ -30,9 +30,9 @@ public class JsonBinder {
 		return json;
 	}
 	
-	//service
+	//service transaction
 	public Map<String, Object> jsonEntity(Object param){
-		LOG.debug("JSON Binding Code => " + param);
+		LOG.debug("JSON Map Binding Code => " + param);
 		JSONObject jsonObject = new JSONObject();
 		Map<String, Object> entityMap = new HashMap<String, Object>();
 		
@@ -42,6 +42,7 @@ public class JsonBinder {
 		} else { // 트랜잭션 처리 실패
 			param = "000A";
 		}
+		LOG.debug("JSON Result Code => " + param);
 		Gson gson = new Gson();
 		jsonObject.put("data", param);
 		String json = gson.toJson(jsonObject);
@@ -49,5 +50,19 @@ public class JsonBinder {
 		entityMap.put("data", json);
 		return entityMap;
 	}
+	
+	// service List
+	public Map<String, Object> jsonEntityList(Object param) {
+		LOG.debug("JSON List Binding Code => " + param);
+		JSONObject jsonObject = new JSONObject();
+		Map<String, Object> entityMap = new HashMap<String, Object>();
+		Gson gson = new Gson();
+		jsonObject.put("data", param);
+		String json = gson.toJson(jsonObject);
+		entityMap.put("data", json);
+		LOG.debug("JSON entityMap => " + entityMap);
+		return entityMap;
+	}
+	
 	
 }

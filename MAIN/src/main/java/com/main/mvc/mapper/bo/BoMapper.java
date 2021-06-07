@@ -9,7 +9,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 public interface BoMapper {
 	
 	// jsp data info
-	public List<Bo1010Dto> channelList();
+	public List<Bo1010Dto> channelList(Bo1010Dto param);
 	public List<Bo1010Dto> channelDetailList(Bo1010Dto param);
 	public Bo1010Dto channelHeader(Bo1010Dto param);
 	public Bo1010Dto channelDetatilData(Bo1010Dto param);
@@ -29,5 +29,11 @@ public interface BoMapper {
 	
 	// 조회수 업데이트
 	public int contentIncheck(Bo1010Dto param);
+	
+	// 채널 추가
+	public int channelInsert(Bo1010Dto param);
+	
+	// 채널 카운트
+	public Bo1010Dto channelCount(Bo1010Dto param);
 	
 }

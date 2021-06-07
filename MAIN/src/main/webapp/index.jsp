@@ -18,42 +18,6 @@ function signUp(){
 	
 }
 
-function loginpop(){
-	window.open("/sy/sy1011pop.yh", "로그인", op3);
-}
-
-function logout(){
-	
-	var jsonData ={};
-    jsonData["form"] = $('form[name="pageForm"]').serializeObject();
-	
-    $.ajax({
-		url : '/sy/logoutCheck.act',
-		type : "post",
-		async : true,
-		dataType : 'json',
-		contentType : "application/json; charset=UTF-8",
-		data : JSON.stringify(jsonData),
-		success : function(response) {
-			var result = JSON.parse(response.data);
-			if(result.data == 0000){
-				alert("로그아웃 했습니다.");
-				location.reload();
-			} else {
-				alert("일시적인 장애로 인한 처리불가");
-			}
-			
-			/* for (var i = 0; i< result.length; i++) {
-			    console.log(result[i]);
-			}  */
-			
-		},
-		error : function(request, status, error) {
-			console.log("일시적인 장애로 인한 처리불가");
-		}
-	});
-	
-}
 
 </script>
 <title>메인</title>
@@ -201,10 +165,10 @@ function logout(){
          			 }
    		});
 		
-		player2 = new YT.Player('player3', { // 유튜브 인스턴스 호출 div id=player
+		player3 = new YT.Player('player3', { // 유튜브 인스턴스 호출 div id=player
             height: '300',
          	 width: '700',
-         	 videoId: "OUPEtZnIlWU",
+         	 videoId: "w25Omk6mLJE",
          	 events: { 'onReady': onPlayerReady,
            		       'onStateChange': onPlayerStateChange
          			 }

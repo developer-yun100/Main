@@ -15,7 +15,7 @@ $(document).ready(function() {
 	CKEDITOR.replace('contentArea', {
 		width: 670
 	   ,height: 500
-	   ,filebrowserUploadUrl : "/bo/fileUpload.act"
+	   ,filebrowserUploadUrl : "${pageContext.request.contextPath}/bo/fileUpload.act"
 	});
 
 });
@@ -39,6 +39,8 @@ function insertContent(){
 	$("#title").val(titlev);
 	$("#content").val(contentArea);
 	
+	var chId = $("#chId").val();
+	
 	var jsonData ={};
     jsonData["form"] = $('form[name="pageForm"]').serializeObject();
 	
@@ -53,7 +55,7 @@ function insertContent(){
 			var result = JSON.parse(response.data);
 			if(result.data == 0000){
 				alert("게시글이 작성 되었습니다.");
-				history.back();
+				location.href="/bo/bo1011.yh?chId="+chId;
 			} else {
 				alert("일시적인 장애로 인한 처리불가");
 			}

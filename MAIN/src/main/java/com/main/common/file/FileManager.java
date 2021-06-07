@@ -13,7 +13,7 @@ public class FileManager {
 	private static final Logger log = LoggerFactory.getLogger(FileManager.class.getName());
 	
 	// 서버에 파일 저장
-	public String fileUpload(MultipartHttpServletRequest req) throws Exception{
+	public String fileUpload(MultipartHttpServletRequest req, int port) throws Exception{
 		
 		MultipartFile mf = req.getFile("upload");
 		
@@ -25,7 +25,17 @@ public class FileManager {
 		String newFileName = null;
 		
 		// 파일 경로
-		String path = "C:\\Users\\beyon\\git\\Main\\MAIN\\src\\main\\webapp\\images\\boardFiles";
+		String path;
+		// 로컬 경로
+		String localPath = "C:\\Users\\beyon\\git\\Main\\MAIN\\src\\main\\webapp\\images\\boardFiles";
+		// 운영 경로
+		String realPath = "C:\\testWar\\Tomcat 8.5\\webapps\\MAIN\\images\\boardFiles";
+		
+		if(port == 80) {
+			path = realPath;
+		} else {
+			path = localPath;
+		}
 		
 		// 받은 파일이 없으면
 		if(bytes == null) {
@@ -57,6 +67,16 @@ public class FileManager {
 		FileOutputStream fos = new FileOutputStream(new File(pathName));
 		fos.write(bytes); // 파일 생성
 		fos.close();
+		
+		// 파일 생성 체크
+		//File file = new File(pathName);
+		
+		/*while(!file.exists()) {
+			if(file.exists()) {
+				log.debug("File Create true");
+				break;
+			}
+		}*/
         
         return newFileName;
 	}
