@@ -23,6 +23,28 @@ public class SyService {
 		return syMapper.selectUserList();
 	}
 	
+	public List<Sy1010Dto> userList(){
+		return syMapper.userList();
+	}
+	
+	// 관리자 로그인
+	public int loginCheckSystem(Sy1010Dto param) {
+		int result = 0;
+		
+		// 관리자 세션 종료
+		UserInfoSession.logout();
+		
+		List<Sy1010Dto> userInfo = syMapper.loginCheckSystem(param);
+		if(userInfo.size() > 0) {
+			UserInfoSession.setLoginSuccess(userInfo.get(0));
+			result = 1;
+		}
+		
+		return result;
+	}
+	
+	
+	
 	// 로그인
 	public int loginCheck(Sy1010Dto param) throws Exception {
 		int result = 0;

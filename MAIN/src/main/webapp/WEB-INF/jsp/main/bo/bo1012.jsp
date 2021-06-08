@@ -57,80 +57,82 @@
 	<input type="hidden" id="regUserId" name="regUserId" value="${sessionScope.S_USERINFO.userId}"/>
 	<input type="hidden" id="regNickName" name="regNickName" value="${sessionScope.S_USERINFO.nickName}"/>
 </form>
-
-	<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
-	<div class="ui text container">
-		<h2 class="ui dividing header">${channelDetatilData.title}</h2>
-	  	<p>
-	  		${channelDetatilData.content}
-	  	</p>
-		
-		
-		
-		<br />
-		<br />
-		<br />
-		<br />
-		<c:if test="${not empty sessionScope.S_USERINFO.userId and sessionScope.S_USERINFO.userId ne ''}">
-			<h2 class="ui dividing header">댓글입력</h2>
-			<form class="ui reply form">
-				<div class="field">
-					<textarea id="commentv"></textarea>
-				</div>
-			</form>
+	<jsp:include page="/common/pageInclude/mainMenu.jsp" flush="false"/>
+	<div class="pusher">
+		<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
+		<div class="ui text container">
+			<h2 class="ui dividing header">${channelDetatilData.title}</h2>
+		  	<p>
+		  		${channelDetatilData.content}
+		  	</p>
+			
+			
+			
 			<br />
-			<button class="ui primary button" onclick="comment();">댓글쓰기</button>
-		</c:if>
-		<!-- 댓글 라인 <c:url value=''/>  -->
-				<div class="ui minimal comments">
-					<h3 class="ui dividing header">댓글</h3>
-					<c:forEach var="dto" items="${commentList}" varStatus="status">
-					<div class="comment">
-						<a class="avatar"> <img src="<c:url value='${dto.profileImg}'/>" style="width:30px; height:30px;"/></a>
-						<div class="content">
-							<a class="author">${dto.regNickName}</a>
-							<div class="metadata">
-								<span class="date">${dto.regDate}</span>
-							</div>
-							<div class="text">${dto.deComment}</div>
-						</div>
+			<br />
+			<br />
+			<br />
+			<c:if test="${not empty sessionScope.S_USERINFO.userId and sessionScope.S_USERINFO.userId ne ''}">
+				<h2 class="ui dividing header">댓글입력</h2>
+				<form class="ui reply form">
+					<div class="field">
+						<textarea id="commentv"></textarea>
 					</div>
-					</c:forEach>
-				</div>
-
-		<%-- <c:forEach var="dto" items="${commentList}" varStatus="status">
-					<div class="comment">
-						<a class="avatar"> <img src="<c:url value='${dto.profileImg}'/>" /></a>
-						<div class="content">
-							<a class="author">${dto.regNickName}</a>
-							<div class="metadata">
-								<span class="date">${dto.regDate}</span>
-							</div>
-							<div class="text">
-								<p>${dto.deComment}</p>
+				</form>
+				<br />
+				<button class="ui primary button" onclick="comment();">댓글쓰기</button>
+			</c:if>
+			<!-- 댓글 라인 <c:url value=''/>  -->
+					<div class="ui minimal comments">
+						<h3 class="ui dividing header">댓글</h3>
+						<c:forEach var="dto" items="${commentList}" varStatus="status">
+						<div class="comment">
+							<a class="avatar"> <img src="<c:url value='${dto.profileImg}'/>" style="width:30px; height:30px;"/></a>
+							<div class="content">
+								<a class="author">${dto.regNickName}</a>
+								<div class="metadata">
+									<span class="date">${dto.regDate}</span>
+								</div>
+								<div class="text">${dto.deComment}</div>
 							</div>
 						</div>
-						<!-- 대댓글  -->
-						<div class="comments">
-							<div class="comment">
-								<a class="avatar"> <img src="<c:url value=''/>" /></a>
-								<div class="content">
-									<a class="author">닉네임</a>
-									<div class="metadata">
-										<span class="date">댓글 적은 날짜</span>
-									</div>
-									<div class="text">댓글의 댓글</div>
+						</c:forEach>
+					</div>
+	
+			<%-- <c:forEach var="dto" items="${commentList}" varStatus="status">
+						<div class="comment">
+							<a class="avatar"> <img src="<c:url value='${dto.profileImg}'/>" /></a>
+							<div class="content">
+								<a class="author">${dto.regNickName}</a>
+								<div class="metadata">
+									<span class="date">${dto.regDate}</span>
+								</div>
+								<div class="text">
+									<p>${dto.deComment}</p>
 								</div>
 							</div>
+							<!-- 대댓글  -->
+							<div class="comments">
+								<div class="comment">
+									<a class="avatar"> <img src="<c:url value=''/>" /></a>
+									<div class="content">
+										<a class="author">닉네임</a>
+										<div class="metadata">
+											<span class="date">댓글 적은 날짜</span>
+										</div>
+										<div class="text">댓글의 댓글</div>
+									</div>
+								</div>
+							</div>
+							<!-- 대댓글  -->
 						</div>
-						<!-- 대댓글  -->
-					</div>
-				</c:forEach> --%>
-		<!-- 댓글 라인  -->
+					</c:forEach> --%>
+			<!-- 댓글 라인  -->
+		</div>
+		
+	  
+	  
+		<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
 	</div>
-	
-  
-  
-	<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
 </body>
 </html>

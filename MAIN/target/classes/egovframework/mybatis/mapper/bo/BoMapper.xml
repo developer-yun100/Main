@@ -14,7 +14,7 @@
 		  FROM HYCHANNEL
 		 WHERE 1=1
 		 <if test='chName != null and chName != "" '>
-		   AND CHNAME LIKE #{chName} || '%'
+		   AND CHNAME LIKE '%' || #{chName} || '%'
 		 </if>
 	</select>
 	

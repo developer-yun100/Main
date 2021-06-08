@@ -23,8 +23,20 @@ public class Interceptor extends HandlerInterceptorAdapter {
 			if(requestUrl.contains("/bo")) {
 				response.sendRedirect("/sy/interceptor.yh");
 				return false;
+			} else if(requestUrl.contains("/sy/sy20")) {
+				response.sendRedirect("/sy/index.yh");
+				return false;
 			}
+			
 		} else {
+			if(requestUrl.contains("/sy/sy20")) {
+				LOG.debug("system Login user check " + UserInfoSession.getUser().getUserId());
+				if(!"00000AHMS".equals(UserInfoSession.getUser().getAuthCode())) {
+					response.sendRedirect("/sy/interceptorSyPage.yh");
+					return false;
+				}
+			}
+			
 		}
 		return true;
 	}

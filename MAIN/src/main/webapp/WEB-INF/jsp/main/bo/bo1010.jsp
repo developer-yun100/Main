@@ -47,44 +47,54 @@ function searchTitle(){
 <form name="pageForm">
 	<input type="hidden" id="chName" name="chName" />
 </form>
-
-<input type="hidden" id="sessionId" value="${sessionScope.S_USERINFO.authCode}" />
-
-	<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
-	<div class="ui text container">
-		<h3>채널검색</h3>
-		<div class="ui inverted segment">
-		<div class="ui action input">
-			<input type="text" id="searchtitlev" placeholder="Search..." />
-			<button class="ui icon button" onclick="searchTitle();">
-				<i class="search icon"></i>
-			</button>
-			<c:if test="${sessionScope.S_USERINFO.authCode eq '00000AHMS'}">
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="ui inverted red button" onclick="channelInsert();">채널 개설</button>
-			</c:if>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="ui inverted blue button">채널 가이드</button>
+	<input type="hidden" id="sessionId" value="${sessionScope.S_USERINFO.authCode}" />
+	
+	<jsp:include page="/common/pageInclude/mainMenu.jsp" flush="false"/>
+	
+	<div class="pusher">
+		<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
+			<div class="ui text container">
+				<h3>채널검색</h3>
+				<div class="ui inverted segment">
+				<div class="ui action input">
+					<input type="text" id="searchtitlev" placeholder="Search..." />
+					<button class="ui icon button" onclick="searchTitle();">
+						<i class="search icon"></i>
+					</button>
+					<c:if test="${sessionScope.S_USERINFO.authCode eq '00000AHMS'}">
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<button class="ui inverted red button" onclick="channelInsert();">채널 개설</button>
+					</c:if>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="ui inverted blue button">채널 가이드</button>
+					</div>
+				</div>
+				<h3>채널 목록</h3>
+				<table class="ui selectable inverted table" id="tableData">
+					<thead>
+						<tr>
+							<th>개설자</th>
+							<th>채널이름</th>
+							<th class="right aligned">구독자 수</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
 			</div>
-		</div>
-		<h3>채널 목록</h3>
-		<table class="ui selectable inverted table" id="tableData">
-			<thead>
-				<tr>
-					<th>개설자</th>
-					<th>채널이름</th>
-					<th class="right aligned">구독자 수</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+			
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+		<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
 	</div>
-
-
-
-	<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
-	
-	
 </body>
 </html>

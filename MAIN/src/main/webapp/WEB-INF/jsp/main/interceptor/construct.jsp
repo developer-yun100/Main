@@ -6,11 +6,12 @@
 <html>
 <head>
 	<jsp:include page="/common/include.jsp" flush="false"/>
-<title>허가되지 않은 페이지 요청</title>
+<title>준비중인 페이지</title>
 </head>
 <body>
-<div class="ui text container">
-	<img style="width:550px; height:550px;" src="<c:url value='/images/egovframework/commonImage/interceptorImage.png'/>" />
+	
+	<div class="ui text container">
+	<img style="width:550px; height:550px;" src="<c:url value='/images/egovframework/commonImage/construct.png'/>" />
 	<button class="ui pink button" onclick="location.href='../../index.jsp'" style="width:550px; height:100px;"><b>홈 화면으로 가기!!</b></button>
 </div>
 
@@ -20,6 +21,6 @@
 		</div>
 		<div class="column"></div>
 	</div>
-
+	
 </body>
 </html>

@@ -87,31 +87,34 @@ function insertContent(){
 	<input type="hidden" id="regNickName" name="regNickName" value="${sessionScope.S_USERINFO.nickName}" />
 </form>
 	
-	<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
+	<jsp:include page="/common/pageInclude/mainMenu.jsp" flush="false"/>
 	
-	<div class="ui text container">
-		<h3 class="ui top attached header">게시글 작성 : ${channelHeader.chName} 채널</h3>
-		<div class="ui attached segment">
-			<div class="ui three column doubling grid container">
-				<div class="column">
-					<form class="ui form">
-						<div class="field">
-							<label>제목</label> 
-							<input type="text" id="titlev" style="width:650px;" />
-						</div>
-					</form>
+	<div class="pusher">
+	
+		<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
+		
+		<div class="ui text container">
+			<h3 class="ui top attached header">게시글 작성 : ${channelHeader.chName} 채널</h3>
+			<div class="ui attached segment">
+				<div class="ui three column doubling grid container">
+					<div class="column">
+						<form class="ui form">
+							<div class="field">
+								<label>제목</label> 
+								<input type="text" id="titlev" style="width:650px;" />
+							</div>
+						</form>
+					</div>
 				</div>
+				<br />
+				<textarea class="form-control" id="contentArea" name="contentArea"></textarea>
 			</div>
 			<br />
-			<textarea class="form-control" id="contentArea" name="contentArea"></textarea>
+			<button class="ui primary button" onclick="insertContent();">작성</button>
+			<button class="ui button" onclick="javascript:history.back();">취소</button>
 		</div>
-		<br />
-		<button class="ui primary button" onclick="insertContent();">작성</button>
-		<button class="ui button" onclick="javascript:history.back();">취소</button>
+		
+		<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
 	</div>
-	
-	
-	<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
-	
 </body>
 </html>

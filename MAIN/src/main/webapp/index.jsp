@@ -26,9 +26,11 @@ function signUp(){
 <form name="pageForm">
 
 </form>
-<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
+
+	<jsp:include page="/common/pageInclude/mainMenu.jsp" flush="false"/>
 
 <div class="pusher">
+	<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
 	<!-- 중단 소개 글  -->
 	<div class="ui vertical stripe segment">
 		<div class="ui middle aligned stackable grid container">
@@ -128,9 +130,8 @@ function signUp(){
 			<span><b>주튜브TV</b></span>
 			    
 		</div>
-			<br />
-			<br />
-		</div>
+		<br />
+		<br />
 	</div>
 <!-- 중단 채널 홍보 글 gqOynrc93y0&t=14s  -->
 <script>
@@ -195,5 +196,6 @@ function signUp(){
 	<br />
 	<br />
 	<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
+</div>
 </body>
 </html>

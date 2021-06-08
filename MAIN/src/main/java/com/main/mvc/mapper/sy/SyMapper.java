@@ -15,6 +15,11 @@ public interface SyMapper {
 	// 로그인
 	public List<Sy1010Dto> loginCheck(Sy1010Dto param);
 	
+	public List<Sy1010Dto> userList();
+	
+	// 관리자 로그인
+	public List<Sy1010Dto> loginCheckSystem(Sy1010Dto param);
+	
 	// 회원가입
 	public int signUp(Sy1010Dto param);
 	

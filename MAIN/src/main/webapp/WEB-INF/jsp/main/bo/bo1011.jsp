@@ -22,58 +22,61 @@ function contentPush(param){
 </head>
 <body>
 	
-	<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
+	<jsp:include page="/common/pageInclude/mainMenu.jsp" flush="false"/>
 	
-		<div class="ui text container">
-		<h3>게시글 검색</h3>
-		<div class="ui inverted segment">
-		<div class="ui action input">
-			<input type="text" id="" name="" placeholder="Search..." />
-			<button class="ui icon button">
-				<i class="search icon"></i>
-			</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="ui inverted red button" onClick="contentPush('${channelHeader.chId}');">글쓰기</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="ui inverted blue button">구독</button>
+	<div class="pusher">
+		<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
+		
+			<div class="ui text container">
+			<h3>게시글 검색</h3>
+			<div class="ui inverted segment">
+			<div class="ui action input">
+				<input type="text" id="" name="" placeholder="Search..." />
+				<button class="ui icon button">
+					<i class="search icon"></i>
+				</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="ui inverted red button" onClick="contentPush('${channelHeader.chId}');">글쓰기</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="ui inverted blue button">구독</button>
+				</div>
+			</div>
+			<h3>${channelHeader.chName} 채널</h3>
+			<table class="ui selectable inverted table">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>채널</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th class="right aligned">조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="dto" items="${channelDetailList}" varStatus="status">
+						<tr onclick="contentDetail('${dto.chDeId}');">
+							<td>${dto.chDeNo}</td>
+							<td style="width:300px;">${dto.chName}</td>
+							<td style="width:400px;">${dto.title}</td>
+							<td style="width:250px;">${dto.regNickName}</td>
+							<td style="width:250px;">${dto.regDate}</td>
+							<td class="right aligned">${dto.inCheck}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div class="ui borderless menu">
+				<a class="item">1</a> 
+				<a class="item">2</a> 
+				<a class="item">3</a> 
+				<a class="item">4</a> 
+				<a class="item">5</a> 
+				<a class="item active">6</a>
 			</div>
 		</div>
-		<h3>${channelHeader.chName} 채널</h3>
-		<table class="ui selectable inverted table">
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>채널</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th class="right aligned">조회수</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="dto" items="${channelDetailList}" varStatus="status">
-					<tr onclick="contentDetail('${dto.chDeId}');">
-						<td>${dto.chDeNo}</td>
-						<td>${dto.chName}</td>
-						<td>${dto.title}</td>
-						<td>${dto.regNickName}</td>
-						<td>${dto.regDate}</td>
-						<td class="right aligned">${dto.inCheck}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<div class="ui borderless menu">
-			<a class="item">1</a> 
-			<a class="item">2</a> 
-			<a class="item">3</a> 
-			<a class="item">4</a> 
-			<a class="item">5</a> 
-			<a class="item active">6</a>
-		</div>
+		
+		<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
 	</div>
-	
-	<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
-	
 </body>
 </html>

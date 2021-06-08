@@ -1,5 +1,6 @@
 package com.main.mvc.controller.sy;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.main.common.api.JsonBinder;
 import com.main.common.api.ParamDto;
+import com.main.mvc.dto.bo.Bo1010Dto;
 import com.main.mvc.dto.sy.Sy1010Dto;
 import com.main.mvc.service.sy.SyService;
 
@@ -28,10 +30,30 @@ public class SyController {
 		return "/interceptor/interceptorPage";
 	}
 	
+	// 인터셉터 2 시스템 관리 URL 접속 차단
+	@RequestMapping(value = "/interceptorSyPage.yh")
+	public String interceptorSyPage(Model model) {
+		return "/interceptor/interceptorSyPage";
+	}
+	
+	// 준비중인 화면
+	@RequestMapping(value = "/construct.yh")
+	public String construct(Model model) {
+		return "/interceptor/construct";
+	}
+	
+	// 홈 화면으로
+	@RequestMapping(value = "/index.yh")
+	public String index(Model model) {
+		return "redirect:/";
+	}
+	
 	// 시스템 관리 화면
-	@RequestMapping(value = "/sy1010.yh")
-	public String sy1020(Model model) {
-		return "/sy/sy1010";
+	@RequestMapping(value = "/sy2010.yh")
+	public String sy2010(Model model) {
+		List<Sy1010Dto> userList = syService.userList();
+		model.addAttribute("userList", userList);
+		return "/sy/sy2010";
 	}
 
 	// 회원가입 팝업
@@ -54,6 +76,16 @@ public class SyController {
 		Sy1010Dto form = params.getForm(Sy1010Dto.class);
 		JsonBinder entity = new JsonBinder();
 		return entity.jsonEntity(syService.loginCheck(form));
+	}
+	
+	// 관리자 로그인
+	@RequestMapping(value = "/loginCheckSystem.act")
+	@ResponseBody
+	public Map<String, Object> loginCheckSystem(@RequestBody ParamDto params, Model model) throws Exception {
+		// form data
+		Sy1010Dto form = params.getForm(Sy1010Dto.class);
+		JsonBinder entity = new JsonBinder();
+		return entity.jsonEntity(syService.loginCheckSystem(form));
 	}
 	
 	// 로그아웃

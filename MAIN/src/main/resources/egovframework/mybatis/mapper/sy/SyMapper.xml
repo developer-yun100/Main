@@ -17,19 +17,36 @@
 	</select>
 	
 	<select id="loginCheck" resultType="Sy1010Dto">
-	SELECT CLIENTID as clientId
-		 , USERID as userId
-		 , NICKNAME as nickName
-		 , EMAIL as email
-		 , AUTHCODE as authCode
-		 , MENUTYPE as menuType
-		 , REGDATE as regDate
-		 , MODDATE as modDate
-		 , useYn as useYn
-	  FROM HYUSERS
-	 WHERE userId = #{userId}
-	   AND passWord = #{passWord}
+		SELECT CLIENTID as clientId
+			 , USERID as userId
+			 , NICKNAME as nickName
+			 , EMAIL as email
+			 , AUTHCODE as authCode
+			 , MENUTYPE as menuType
+			 , REGDATE as regDate
+			 , MODDATE as modDate
+			 , useYn as useYn
+		  FROM HYUSERS
+		 WHERE userId = #{userId}
+		   AND passWord = #{passWord}
 	</select>
+	
+	<!-- 관리자 전용 로그인  -->
+	<select id="loginCheckSystem" resultType="Sy1010Dto">
+		SELECT CLIENTID as clientId
+			 , USERID as userId
+			 , NICKNAME as nickName
+			 , EMAIL as email
+			 , AUTHCODE as authCode
+			 , MENUTYPE as menuType
+			 , REGDATE as regDate
+			 , MODDATE as modDate
+			 , useYn as useYn
+		  FROM HYUSERS
+		 WHERE userId = #{userId}
+	</select>
+	
+	
 	
 	<insert id="signUp">
 		INSERT INTO HYUSERS (
@@ -57,6 +74,15 @@
 	
 	</insert>
 	
+	<select id="userList" resultType="Sy1010Dto">
+		SELECT userId as userId
+		     , nickName as nickName
+		     , eMail as email
+		     , authCode as authCode
+		     , useYn as useYn
+		     , '로그인' as userLogin
+		  FROM HYUSERS
+	</select>
 	
 	
 </mapper>
