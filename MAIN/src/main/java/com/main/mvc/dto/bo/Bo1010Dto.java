@@ -14,6 +14,7 @@ public @Data class Bo1010Dto {
 	 private String chDeId;
 	 private String chDeNo;
 	 private String regUserId;
+	 private String userId;
 	 private String regNickName;
 	 private String title;
 	 private String content;
@@ -25,5 +26,8 @@ public @Data class Bo1010Dto {
 	 private String commentCount;
 	 private String contentCount;
 	 private String channelCount;
+	 
+	 private String subScrYn;
+	 private String boardClick;
 	 
 }

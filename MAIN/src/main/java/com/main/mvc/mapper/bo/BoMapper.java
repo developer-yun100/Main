@@ -15,6 +15,8 @@ public interface BoMapper {
 	public Bo1010Dto channelDetatilData(Bo1010Dto param);
 	public List<Bo1010Dto> commentList(Bo1010Dto param);
 	
+	public List<Bo1010Dto> contentMyList(Bo1010Dto param);
+	
 	// 게시글 댓글 등록
 	public int commentInsert(Bo1010Dto param);
 	
@@ -35,5 +37,11 @@ public interface BoMapper {
 	
 	// 채널 카운트
 	public Bo1010Dto channelCount(Bo1010Dto param);
+	
+	// 채널 구독
+	public int subScribe(Bo1010Dto param);
+	public Bo1010Dto subScrYn(Bo1010Dto param);
+	
+	public List<Bo1010Dto> scrContentList(Bo1010Dto param);
 	
 }

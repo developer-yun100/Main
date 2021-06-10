@@ -17,10 +17,51 @@ function contentPush(param){
 	location.href="/bo/bo1013.yh?chId="+param;
 }
 
+function subScribe(){
+	
+	var jsonData ={};
+    jsonData["form"] = $('form[name="pageForm"]').serializeObject();
+	
+    $.ajax({
+		url : '/bo/subScribe.act',
+		type : "post",
+		async : true,
+		dataType : 'json',
+		contentType : "application/json; charset=UTF-8",
+		data : JSON.stringify(jsonData),
+		success : function(response) {
+			var result = JSON.parse(response.data);
+			if(result.data == 0000){
+				alert("해당 채널을 구독하였습니다.");
+				location.reload();
+			} else {
+				alert("일시적인 장애로 인한 처리불가");
+			}
+			
+			
+		},
+		error : function(request, status, error) {
+			console.log("일시적인 장애로 인한 처리불가");
+		}
+	});
+	
+}
+
+function subScribeCancel(){
+	alert("구독 취소");
+}
+
 </script>
 <title>채널 상세</title>
 </head>
 <body>
+<form name="pageForm">
+	<input type="hidden" id="deComment" name="deComment" />
+	<input type="hidden" id="chId" name="chId" value="${channelHeader.chId}" />
+	<input type="hidden" id="userId" name="userId" value="${sessionScope.S_USERINFO.userId}"/>
+	<input type="hidden" id="chName" name="chName" value="${channelHeader.chName}" />
+</form>
+
 	
 	<jsp:include page="/common/pageInclude/mainMenu.jsp" flush="false"/>
 	
@@ -36,9 +77,14 @@ function contentPush(param){
 					<i class="search icon"></i>
 				</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="ui inverted red button" onClick="contentPush('${channelHeader.chId}');">글쓰기</button>
+				<button class="ui inverted red button" onclick="contentPush('${channelHeader.chId}');">글쓰기</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="ui inverted blue button">구독</button>
+				<c:if test="${subScrYn.subScrYn eq 'N'}">
+					<button class="ui inverted blue button" onclick="subScribe();">구독</button>
+				</c:if>
+				<c:if test="${subScrYn.subScrYn eq 'Y'}">
+					<button class="ui inverted red button" onclick="subScribeCancel();">구독취소</button>
+				</c:if>
 				</div>
 			</div>
 			<h3>${channelHeader.chName} 채널</h3>

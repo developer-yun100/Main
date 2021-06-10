@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.main.common.session.UserInfoSession;
 import com.main.mvc.dto.bo.Bo1010Dto;
 import com.main.mvc.mapper.bo.BoMapper;
 
@@ -38,6 +39,21 @@ public class BoService {
 		return boMapper.commentList(param);
 	}
 	
+	// 내가 쓴 글 조회
+	public List<Bo1010Dto> contentMyList(Bo1010Dto param){
+		return boMapper.contentMyList(param);
+	}
+	
+	public Bo1010Dto subScrYn(Bo1010Dto param) {
+		param.setUserId(UserInfoSession.getUser().getUserId());
+		return boMapper.subScrYn(param);
+	}
+	
+	public List<Bo1010Dto> scrContentList(Bo1010Dto param){
+		param.setUserId(UserInfoSession.getUser().getUserId());
+		return  boMapper.scrContentList(param);
+	}
+	
 	// 채널 개설
 	@Transactional
 	public int channelInsert(Bo1010Dto param) {
@@ -45,6 +61,14 @@ public class BoService {
 		Bo1010Dto channelCount = boMapper.channelCount(param);
 		param.setChannelCount(channelCount.getChannelCount());
 		result = boMapper.channelInsert(param);
+		return result;
+	}
+	
+	// 채널 구독
+	@Transactional
+	public int subScribe(Bo1010Dto param) {
+		int result = 0;
+		result = boMapper.subScribe(param);
 		return result;
 	}
 	

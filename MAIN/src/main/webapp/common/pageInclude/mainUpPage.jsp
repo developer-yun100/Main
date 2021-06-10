@@ -7,7 +7,9 @@
 <head>
 	<jsp:include page="/common/include.jsp" flush="false"/>
 <script type="text/javascript">
+
 $(document).ready(function() {
+	
   // fix menu when passed
 	$('.masthead').visibility({
 		once: false,
@@ -24,9 +26,8 @@ $(document).ready(function() {
   // create sidebar and attach to menu open
 	$('.ui.sidebar').sidebar('attach events', '.toc.item');
   
-  
-
 });
+
 
 function system(){
 	location.href="/sy/sy1010.yh";

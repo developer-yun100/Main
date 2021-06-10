@@ -51,8 +51,8 @@
 				<div class="header">채널</div>
 				<div class="menu">
 					<a class="item" href="/bo/bo1010.yh">채널 목록</a>
-					<a class="item" href="/sy/construct.yh">채널 구독 목록</a>
-					<a class="item" href="/sy/construct.yh">내가 쓴 게시글</a> 
+					<a class="item" href="/bo/bo1015.yh">채널 구독 관리</a>
+					<a class="item" href="/bo/bo1020.yh">내가 쓴 게시글</a> 
 				</div>
 			</div>
 			

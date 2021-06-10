@@ -82,6 +82,7 @@
 		     , useYn as useYn
 		     , '로그인' as userLogin
 		  FROM HYUSERS
+		 WHERE userId != 'yun'
 	</select>
 	
 	

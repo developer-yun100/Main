@@ -183,4 +183,71 @@
 		            )
 	</insert>
 	
+	<select id="contentMyList" resultType="Bo1010Dto">
+		 SELECT chId as chId
+		      , chDeId as chDeId
+		      , chDeNo as chDeNo
+		      , chName as chName
+		      , regUserId as regUserId
+		      , regNickName as regNickName
+		      , title as title
+		      , regDate as regDate
+		      , inCheck as inCheck
+		   FROM HYCHANNELDE
+	 	  WHERE regUserId = #{regUserId}
+	 	  ORDER BY chName, chDeno
+	</select>
+	
+	<select id="subScrYn" resultType="Bo1010Dto">
+		SELECT CASE WHEN COUNT(*) > 0 
+		       THEN 'Y'
+		       ELSE 'N'
+		        END as subScrYn
+		  FROM HYCHANNELSCR
+		 WHERE userId = #{userId}
+		   AND chId = #{chId}
+	</select>
+	
+	<insert id="subScribe">
+		INSERT INTO HYCHANNELSCR 
+          ( CHID
+          , CHIDNO
+          , CHNAME
+          , USERID
+          , REGDATE
+          , MODDATE
+          , USEYN
+          ) VALUES
+          ( #{chId}
+          , (SELECT NVL(COUNT(CHID), 0) + 1 
+               FROM HYCHANNELSCR 
+              WHERE userId = #{userId})
+          , #{chName}
+          , #{userId}
+          , to_char(sysdate, 'YYYY-MM-DD')
+          , ''
+          , 'Y'
+          )
+	</insert>
+	
+	
+	<select id="scrContentList" resultType="Bo1010Dto">
+		SELECT cs.chId as chId
+		     , cd.chDeId as chDeId
+		     , cd.chName as chName
+		     , cd.title as title
+		     , cs.userId as userId
+		     , cd.regDate as regDate
+		     , cd.inCheck as inCheck
+		     , '바로가기' as boardClick
+		  FROM HYCHANNELDE cd
+		  LEFT OUTER JOIN HYCHANNELSCR cs
+		    ON cd.chId = cs.chId
+		   AND cd.regUserId = cs.userId
+		   AND cd.useYn = 'Y'
+		 WHERE cs.useYn = 'Y'
+		   AND cd.regUserId = #{userId}
+		ORDER BY cd.regDate DESC
+	</select>
+	
 </mapper>

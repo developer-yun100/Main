@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 import com.main.common.api.JsonBinder;
 import com.main.common.api.ParamDto;
 import com.main.common.file.FileManager;
+import com.main.common.session.UserInfoSession;
 import com.main.mvc.dto.bo.Bo1010Dto;
 import com.main.mvc.service.bo.BoService;
 
@@ -48,17 +49,6 @@ public class BoController {
 		return "/bo/bo1010";
 	}
 	
-	// 채널 목록 검색 조회
-	@RequestMapping(value = "/searchTitle.act")
-	@ResponseBody
-	public Map<String, Object> searchTitle(@RequestBody ParamDto params, Model model) throws Exception {
-		Bo1010Dto form = params.getForm(Bo1010Dto.class);
-		JsonBinder entity = new JsonBinder();
-		List<Bo1010Dto> channelList = boService.channelList(form);
-		return entity.jsonEntityList(channelList);
-	}
-	
-	
 	// 채널상세
 	@RequestMapping(value = "/bo1011.yh")
 	public String bo1011(Bo1010Dto bo1010Dto, Model model) {
@@ -68,6 +58,9 @@ public class BoController {
 		
 		Bo1010Dto channelHeader = boService.channelHeader(bo1010Dto);
 		model.addAttribute("channelHeader", channelHeader);
+		
+		Bo1010Dto subScrYn = boService.subScrYn(bo1010Dto);
+		model.addAttribute("subScrYn", subScrYn);
 		
 		return "/bo/bo1011";
 	}
@@ -80,7 +73,7 @@ public class BoController {
 		Bo1010Dto channelDetatilData = boService.channelDetatilData(bo1010Dto);
 		model.addAttribute("channelDetatilData", channelDetatilData);
 		boService.contentIncheck(bo1010Dto);
-		
+
 		return "/bo/bo1012";
 	}
 	
@@ -89,6 +82,49 @@ public class BoController {
 	public String bo1014(Bo1010Dto bo1010Dto, Model model) throws Exception {
 		return "/bo/bo1014pop";
 	}
+	
+	// 채널 구독 목록
+	@RequestMapping(value = "/bo1015.yh")
+	public String bo1015(Bo1010Dto bo1010Dto, Model model) throws Exception {
+		
+		// 구독 리스트 + 구독 게시글 
+		List<Bo1010Dto> scrContentList = boService.scrContentList(bo1010Dto);
+		model.addAttribute("scrContentList", scrContentList);
+		
+		return "/bo/bo1015";
+	}
+	
+	
+	// 내가 쓴 글 조회
+	@RequestMapping(value = "/bo1020.yh")
+	public String bo1020(Bo1010Dto bo1010Dto, Model model) {
+		bo1010Dto.setRegUserId(UserInfoSession.getUser().getUserId());
+		List<Bo1010Dto> contentMyList = boService.contentMyList(bo1010Dto);
+		model.addAttribute("contentMyList", contentMyList);
+		return "/bo/bo1020";
+	}
+	
+	
+	
+	// 채널 목록 검색 조회
+	@RequestMapping(value = "/searchTitle.act")
+	@ResponseBody
+	public Map<String, Object> searchTitle(@RequestBody ParamDto params, Model model) throws Exception {
+		Bo1010Dto form = params.getForm(Bo1010Dto.class);
+		JsonBinder entity = new JsonBinder();
+		List<Bo1010Dto> channelList = boService.channelList(form);
+		return entity.jsonEntityList(channelList);
+	}
+	
+	// 채널 구독
+	@RequestMapping(value = "/subScribe.act")
+	@ResponseBody
+	public Map<String, Object> subScribe(@RequestBody ParamDto params, Model model) throws Exception {
+		Bo1010Dto form = params.getForm(Bo1010Dto.class);
+		JsonBinder entity = new JsonBinder();
+		return entity.jsonEntity(boService.subScribe(form));
+	}
+	
 	
 	
 	// 채널 생성
@@ -99,7 +135,6 @@ public class BoController {
 		JsonBinder entity = new JsonBinder();
 		return entity.jsonEntity(boService.channelInsert(form));
 	}
-	
 	
 	// 게시글 입력
 	@RequestMapping(value = "/contentInsert.act")

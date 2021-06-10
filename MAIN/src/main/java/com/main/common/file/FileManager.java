@@ -29,9 +29,9 @@ public class FileManager {
 		// 로컬 경로
 		String localPath = "C:\\Users\\beyon\\git\\Main\\MAIN\\src\\main\\webapp\\images\\boardFiles";
 		// 운영 경로
-		String realPath = "C:\\testWar\\Tomcat 8.5\\webapps\\MAIN\\images\\boardFiles";
+		String realPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\MAIN\\images\\boardFiles";
 		
-		if(port == 80) {
+		if(port == 80 || port == 443) {
 			path = realPath;
 		} else {
 			path = localPath;
