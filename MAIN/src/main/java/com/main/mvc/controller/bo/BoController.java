@@ -125,6 +125,14 @@ public class BoController {
 		return entity.jsonEntity(boService.subScribe(form));
 	}
 	
+	// 채널 구독 취소
+	@RequestMapping(value = "/subScribeCancel.act")
+	@ResponseBody
+	public Map<String, Object> subScribeCancel(@RequestBody ParamDto params, Model model) throws Exception {
+		Bo1010Dto form = params.getForm(Bo1010Dto.class);
+		JsonBinder entity = new JsonBinder();
+		return entity.jsonEntity(boService.subScribeCancel(form));
+	}
 	
 	
 	// 채널 생성
@@ -158,13 +166,13 @@ public class BoController {
 		PrintWriter pw;
 		String ipPort;
 		
-		if(port == 80) {
+		if(port == 10076) {
 			ipPort = "http://yh.developeryun.kr";
 		} else {
 			ipPort = "http://" + ip + ":" + String.valueOf(port);
 		}
 		
-		String path = "/images/boardFiles/";
+		String path = "/boardImages/";
 		
         String filePathName = ipPort + path + fileName;
         String callback = req.getParameter("CKEditorFuncNum");

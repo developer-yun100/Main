@@ -48,7 +48,7 @@ function channel(){
 <body>
 
 	<!-- fade toolBar -->
-		<div class="ui large top fixed hidden menu">
+		<%-- <div class="ui large top fixed hidden menu">
 			<div class="ui container">
 				<a class="item" onclick="location.href='../index.jsp'">홈</a>
 					<c:if test="${empty sessionScope.S_USERINFO.userId or sessionScope.S_USERINFO.userId eq ''}">
@@ -66,7 +66,7 @@ function channel(){
 						<a class="item" onclick="logout();">로그아웃</a>
 					</c:if>
 			</div>
-		</div>
+		</div> --%>
 		<!-- fade toolBar -->
 	
 		<!-- 상단 UI -->

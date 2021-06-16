@@ -46,7 +46,17 @@
 		 WHERE userId = #{userId}
 	</select>
 	
+	<select id="userIdCheck" resultType="Sy1010Dto">
+		SELECT COUNT(*) as userId 
+		  FROM HYUSERS
+		 WHERE userId = #{userId}
+	</select>
 	
+	<select id="nickNameCheck" resultType="Sy1010Dto">
+		SELECT COUNT(*) as nickName 
+		  FROM HYUSERS
+		 WHERE nickName = #{nickName}
+	</select>
 	
 	<insert id="signUp">
 		INSERT INTO HYUSERS (

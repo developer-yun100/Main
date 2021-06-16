@@ -65,4 +65,16 @@ public class JsonBinder {
 	}
 	
 	
+	// return JSON ( 0000, 000A, 000B, 000C )
+	public Map<String, Object> returnJSON(String code){
+		LOG.debug("JSON Map Binding Code => " + code);
+		Map<String, Object> entity = new HashMap<String, Object>();
+		JSONObject jsonObject = new JSONObject();
+		Gson gson = new Gson();
+		jsonObject.put("data", code);
+		String json = gson.toJson(jsonObject);
+		entity.put("data", json);
+		return entity;
+	}
+	
 }

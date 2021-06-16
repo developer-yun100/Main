@@ -34,9 +34,16 @@ function signUp(){
 	var passWord = $("#passWordv").val();
 	var passWordCheck = $("#passWordCheckv").val();
 	
+	var idCheck = /^[A-Za-z0-9+]*$/;
+	
 	// 아이디 체크
 	if(userId == null || userId == ""){
 		alert("아이디를 입력 해 주세요.");
+		return false;
+	}
+	
+	if(!idCheck.test(userId)){
+		alert("영문 및 숫자만 입력 가능합니다.")
 		return false;
 	}
 	
@@ -80,11 +87,15 @@ function signUp(){
 		data : JSON.stringify(jsonData),
 		success : function(response) {
 			var result = JSON.parse(response.data);
-			if(result.data == 0000){
+			if(result.data == "0000"){
 				alert("회원가입을 축하 합니다.");
 				window.close();
+			} else if(result.data == "000B"){
+				alert("이미 사용중인 아이디 입니다.");
+			} else if(result.data == "000C"){
+				alert("이미 사용중인 닉네임 입니다.");
 			} else {
-				alert("일시적인 장애로 인한 처리불가");
+				alert("정상 처리하지 못했습니다. \n현상이 지속되면 관리자에게 문의 바랍니다.");
 			}
 			
 			/* for (var i = 0; i< result.length; i++) {

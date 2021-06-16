@@ -3,16 +3,19 @@
 <mapper namespace="com.main.mvc.mapper.bo.BoMapper">
 	
 	<select id="channelList" resultType="Bo1010Dto">
-		SELECT CHID as chId
-		     , CHNO as chNo
-		     , CHNAME as chName
-		     , CHOPENNAME as chOpenName
-		     , CHUSERCOUNT as chUserCount
-		     , REGDATE as regDate
-		     , MODDATE as modDate
-		     , USEYN as useYn
-		  FROM HYCHANNEL
-		 WHERE 1=1
+		SELECT ch.CHID as chId
+			 , ch.CHNO as chNo
+			 , ch.CHNAME as chName
+			 , ch.CHOPENNAME as chOpenName
+			 , (SELECT COUNT(*)
+		          FROM HYCHANNELSCR cs
+		         WHERE cs.useYn = 'Y'
+		           AND cs.chId = ch.chId) as chUserCount
+			 , ch.REGDATE as regDate
+			 , ch.MODDATE as modDate
+			 , ch.USEYN as useYn
+		  FROM HYCHANNEL ch
+		 WHERE useYn = 'Y'
 		 <if test='chName != null and chName != "" '>
 		   AND CHNAME LIKE '%' || #{chName} || '%'
 		 </if>
@@ -48,6 +51,28 @@
 		 WHERE useYn = 'Y'
 		   AND CHID = #{chId}
 		 ORDER BY TO_NUMBER(chDeNo) DESC
+	</select>
+	
+	<select id="channelDetailListTwo" resultType="Bo1010Dto" >
+		SELECT rownum, de.* 
+		  FROM ( SELECT CHID as chId
+		              , CHDEID as chDeId
+		              , CHDENO as chDeNo
+		              , CHNAME as chName
+		              , REGUSERID as regUserId
+		              , REGNICKNAME as regNickName
+		              , TITLE as title
+		              , CONTENT as content
+		              , NVL(INCHECK, 0) as inCheck
+		              , REGDATE as regDate
+		              , MODDATE as modDate
+		              , USEYN as useYn
+		           FROM HYCHANNELDE
+		          WHERE useYn = 'Y'
+		            AND CHID = #{chId}
+		          ORDER BY TO_NUMBER(chDeNo) DESC
+		        ) de
+		 WHERE rownum BETWEEN #{rownum} AND #{rownum}
 	</select>
 	
 	<select id="channelDetatilData" resultType="Bo1010Dto">
@@ -204,50 +229,67 @@
 		       ELSE 'N'
 		        END as subScrYn
 		  FROM HYCHANNELSCR
-		 WHERE userId = #{userId}
+		 WHERE useYn = 'Y' 
+		   AND userId = #{userId}
 		   AND chId = #{chId}
 	</select>
 	
 	<insert id="subScribe">
-		INSERT INTO HYCHANNELSCR 
-          ( CHID
-          , CHIDNO
-          , CHNAME
-          , USERID
-          , REGDATE
-          , MODDATE
-          , USEYN
-          ) VALUES
-          ( #{chId}
-          , (SELECT NVL(COUNT(CHID), 0) + 1 
-               FROM HYCHANNELSCR 
-              WHERE userId = #{userId})
-          , #{chName}
-          , #{userId}
-          , to_char(sysdate, 'YYYY-MM-DD')
-          , ''
-          , 'Y'
-          )
+		MERGE INTO HYCHANNELSCR scr
+	    USING dual
+	       ON( scr.chId = #{chId}
+	      AND  scr.userId = #{userId} )
+	     WHEN MATCHED THEN
+	           UPDATE 
+			      SET scr.useYn = 'Y'
+			        , scr.modDate = to_char(sysdate, 'YYYY-MM-DD')
+			    WHERE scr.chId = #{chId}
+			      AND scr.userId = #{userId}
+	     WHEN NOT MATCHED THEN
+	           INSERT ( CHID
+	                  , CHIDNO
+	               	  , CHNAME
+	               	  , USERID
+	               	  , REGDATE
+	               	  , MODDATE
+	                  , USEYN
+	                  ) VALUES
+	                  ( #{chId}
+	                  , (SELECT NVL(COUNT(CHID), 0) + 1 
+	                       FROM HYCHANNELSCR 
+	                      WHERE userId = #{userId})
+	                  , #{chName}
+	                  , #{userId}
+	                  , to_char(sysdate, 'YYYY-MM-DD')
+	                  , ''
+	                  , 'Y'
+	                  )
 	</insert>
+	
+	<update id="subScribeCancel">
+		UPDATE HYCHANNELSCR
+		   SET USEYN = 'N'
+		 WHERE chId = #{chId}
+		   AND userId = #{userId}
+	</update>
 	
 	
 	<select id="scrContentList" resultType="Bo1010Dto">
 		SELECT cs.chId as chId
-		     , cd.chDeId as chDeId
-		     , cd.chName as chName
-		     , cd.title as title
-		     , cs.userId as userId
-		     , cd.regDate as regDate
-		     , cd.inCheck as inCheck
-		     , '바로가기' as boardClick
-		  FROM HYCHANNELDE cd
+		     , ch.chName as chName
+		     , ch.chOpenName as chOpenName
+		     , ch.regDate as regDate
+		     , '채널 바로가기' as boardClick
+		     , (SELECT COUNT(*) 
+		          FROM HYCHANNELSCR su
+		         WHERE su.useYn = 'Y'
+		           AND su.chId = ch.chId) as chUserCount
+		  FROM HYCHANNEL ch
 		  LEFT OUTER JOIN HYCHANNELSCR cs
-		    ON cd.chId = cs.chId
-		   AND cd.regUserId = cs.userId
-		   AND cd.useYn = 'Y'
+		    ON ch.chId = cs.chId
+		   AND ch.useYn = 'Y'
 		 WHERE cs.useYn = 'Y'
-		   AND cd.regUserId = #{userId}
-		ORDER BY cd.regDate DESC
+		   AND cs.userId = #{userId}
 	</select>
 	
 </mapper>

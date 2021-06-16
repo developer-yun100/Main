@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.mvc.mapper.us.UsMapper">
+
+	<select id="userInfoDto" resultType="UsDto">
+		SELECT userId as userId
+		     , nickName as nickName
+		     , email as email
+		     , regDate as regDate
+		     , proFileImg as proFileImgUrl
+		  FROM HYUSERS
+		 WHERE userId = #{userId}
+	</select>
+
+	<update id="proFileChange">
+		UPDATE HYUSERS
+   		   SET PROFILEIMG = #{proFileImgUrl}
+ 		 WHERE userid = #{userId}
+	</update>
+
+</mapper>

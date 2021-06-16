@@ -50,8 +50,8 @@ function signUp(){
 					<p>@@회사 : 내가 사용하는 화면을 각각 맞춰, 조정 할 수 있어 금방 금방 익히고 업무 효율까지 증가했습니다. 감사합니다.</p>
 				</div>
 				<div class="six wide right floated column">
-					<img src="<c:url value='/images/egovframework/indexImage/title.png'/>" class="ui large bordered rounded image" />
-					<h3>슈퍼디펜스 그랜드 오픈! 지금 당장 GooglePlay에서 만나보세요!!</h3>
+					<h3>슈퍼디펜스 그랜드 오픈! 지금 당장 GooglePlay에서 만나보세요!! 아래는 플레이 동영상 입니다!</h3>
+					<video style="width:600px; height:400px;" controls src="<c:url value='/images/utilfile/testV.mp4'/>" />
 				</div>
 			</div>
 			<div class="row">

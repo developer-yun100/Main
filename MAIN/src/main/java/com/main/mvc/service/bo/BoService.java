@@ -26,6 +26,11 @@ public class BoService {
 		return boMapper.channelDetailList(param);
 	}
 	
+	// 상세 페이징
+	public List<Bo1010Dto> channelDetailListTwo(Bo1010Dto param){
+		return boMapper.channelDetailListTwo(param);
+	}
+	
 	// 상세
 	public Bo1010Dto channelHeader(Bo1010Dto param){
 		return boMapper.channelHeader(param);
@@ -69,6 +74,14 @@ public class BoService {
 	public int subScribe(Bo1010Dto param) {
 		int result = 0;
 		result = boMapper.subScribe(param);
+		return result;
+	}
+	
+	// 채널 구독 취소
+	@Transactional
+	public int subScribeCancel(Bo1010Dto param) {
+		int result = 0;
+		result = boMapper.subScribeCancel(param);
 		return result;
 	}
 	

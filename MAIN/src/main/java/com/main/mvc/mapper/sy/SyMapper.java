@@ -23,6 +23,9 @@ public interface SyMapper {
 	// 회원가입
 	public int signUp(Sy1010Dto param);
 	
+	// 로그인 체크
+	public Sy1010Dto userIdCheck(Sy1010Dto param);
 	
+	public Sy1010Dto nickNameCheck(Sy1010Dto param);
 	
 }

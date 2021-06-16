@@ -6,21 +6,57 @@
 <html>
 <head>
 	<jsp:include page="/common/include.jsp" flush="false"/>
-<title>URL접속 금지</title>
-</head>
-<body>
 	
-	<div class="ui text container">
-		<img style="width:550px; height:550px;" src="<c:url value='/images/egovframework/commonImage/urlInterceptor.png'/>" />
-		<button class="ui pink button" onclick="location.href='../../index.jsp'" style="width:550px; height:100px;"><b>홈 화면으로 가기!!</b></button>
-	</div>
+<style>
 
-	<div class="ui three column doubling grid">
-		<div class="column"></div>
-		<div class="column">
+</style>
+	
+
+<title>데이터 관리</title>
+
+</head>
+
+
+<body>
+
+	
+	<jsp:include page="/common/pageInclude/mainMenu.jsp" flush="false"/>
+	<div class="pusher">
+		<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
+		
+		
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		
+		
+		
+		<div class="ui text container">
+		
+		
+			
+			
 		</div>
-		<div class="column"></div>
+		
+		
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		
+		<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
 	</div>
+	
 	
 </body>
 </html>

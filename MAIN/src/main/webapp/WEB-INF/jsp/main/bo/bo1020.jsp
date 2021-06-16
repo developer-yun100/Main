@@ -24,15 +24,15 @@ function contentDetail(param){
 	<div class="pusher">
 		<jsp:include page="/common/pageInclude/mainUpPage.jsp" flush="false"/>
 		<div class="ui text container">
-			<h3>내가 쓴 글</h3>
+			<h3>내가 쓴 게시글</h3>
 			<table class="ui selectable inverted table">
 				<thead>
 					<tr>
-						<th>채널</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th class="right aligned">조회수</th>
+						<th style="width:300px;">채널</th>
+						<th style="width:400px;">제목</th>
+						<th style="width:250px;">작성자</th>
+						<th style="width:250px;">작성일</th>
+						<th class="right aligned" style="width:120px;">조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,7 +42,7 @@ function contentDetail(param){
 							<td style="width:400px;">${dto.title}</td>
 							<td style="width:250px;">${dto.regNickName}</td>
 							<td style="width:250px;">${dto.regDate}</td>
-							<td class="right aligned">${dto.inCheck}</td>
+							<td class="center aligned" style="width:120px;">${dto.inCheck}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

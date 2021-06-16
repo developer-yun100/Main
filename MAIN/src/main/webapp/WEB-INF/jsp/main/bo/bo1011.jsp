@@ -48,7 +48,29 @@ function subScribe(){
 }
 
 function subScribeCancel(){
-	alert("구독 취소");
+	var jsonData ={};
+    jsonData["form"] = $('form[name="pageForm"]').serializeObject();
+    
+    $.ajax({
+		url : '/bo/subScribeCancel.act',
+		type : "post",
+		async : true,
+		dataType : 'json',
+		contentType : "application/json; charset=UTF-8",
+		data : JSON.stringify(jsonData),
+		success : function(response) {
+			var result = JSON.parse(response.data);
+			if(result.data == 0000){
+				alert("해당 채널을 구독 취소 하였습니다.");
+				location.reload();
+			} else {
+				alert("일시적인 장애로 인한 처리불가");
+			}
+		},
+		error : function(request, status, error) {
+			console.log("일시적인 장애로 인한 처리불가");
+		}
+	});
 }
 
 </script>

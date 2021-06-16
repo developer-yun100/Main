@@ -2,6 +2,8 @@
 var op1 = "width=650px, height=700px, resizable=no, scrollbars=yes, location=no, left=-30, top=-50";
 var op2 = "width=1400px, height=1400px, resizable=no, scrollbars=yes, location=no, left=-30, top=-50";
 var op3 = "width=550px, height=550px, resizable=no, scrollbars=yes, location=no, left=-30, top=-50";
+var op4 = "width=800px, height=700px, resizable=no, scrollbars=yes, location=no, left=-30, top=-50";
+
 
 // form -> json
 $.fn.serializeObject = function(){

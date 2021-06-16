@@ -10,6 +10,10 @@
 	
 <script type="text/javascript">
 
+function boPage(param){
+	location.href="/bo/bo1011.yh?chId="+param;
+}
+
 </script>
 
 <title>채널 구독 목록</title>
@@ -24,23 +28,21 @@
 			<table class="ui selectable inverted table">
 				<thead>
 					<tr>
-						<th>채널</th>
-						<th>제목</th>
-						<th>아이디</th>
-						<th>작성일</th>
-						<th class="right aligned">조회수</th>
-						<th>게시글</th>
+						<th style="width:160px;">채널</th>
+						<th style="width:100px;">채널 개설자</th>
+						<th class="center aligned" style="width:70px;">구독자</th>
+						<th style="width:100px;">개설 날짜</th>
+						<th style="width:100px;">채널 바로가기</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="dto" items="${scrContentList}" varStatus="status">
 						<tr>
 							<td style="width:160px;">${dto.chName}</td>
-							<td style="width:200px;">${dto.title}</td>
-							<td style="width:100px;">${dto.userId}</td>
-							<td style="width:120px;">${dto.regDate}</td>
-							<td class="right aligned" style="width:80px;">${dto.inCheck}</td>
-							<td style="width:100px;">${dto.boardClick}</td>
+							<td style="width:100px;">${dto.chOpenName}</td>
+							<td class="center aligned" style="width:70px;">${dto.chUserCount}</td>
+							<td style="width:100px;">${dto.regDate}</td>
+							<td style="width:100px; cursor:pointer;" onClick="boPage('${dto.chId}');"><a>${dto.boardClick}</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

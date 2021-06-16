@@ -17,6 +17,9 @@ public interface BoMapper {
 	
 	public List<Bo1010Dto> contentMyList(Bo1010Dto param);
 	
+	// 페이징
+	public List<Bo1010Dto> channelDetailListTwo(Bo1010Dto param);
+	
 	// 게시글 댓글 등록
 	public int commentInsert(Bo1010Dto param);
 	
@@ -41,6 +44,9 @@ public interface BoMapper {
 	// 채널 구독
 	public int subScribe(Bo1010Dto param);
 	public Bo1010Dto subScrYn(Bo1010Dto param);
+	
+	// 채널 구독 취소
+	public int subScribeCancel(Bo1010Dto param);
 	
 	public List<Bo1010Dto> scrContentList(Bo1010Dto param);
 	

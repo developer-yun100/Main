@@ -79,9 +79,38 @@ public class SyService {
 		String passSha256 = param.getPassWord();
 		param.setPassWord(su.sha256(passSha256));
 		
+		// 아이디 // 닉네임 체크
+		
 		result = syMapper.signUp(param);
 		return result;
 	}
 	
+	// 아이디
+	public boolean userIdCheck(Sy1010Dto param) {
+		boolean isOk;
+		Sy1010Dto syDto = syMapper.userIdCheck(param);
+		int count = Integer.parseInt(syDto.getUserId());
+		if(count > 0) {
+			isOk = true;
+		} else {
+			isOk = false;
+		}
+		
+		return isOk;
+	}
+	
+	// 닉네임 체크
+	public boolean nickNameCheck(Sy1010Dto param) {
+		boolean isOk;
+		Sy1010Dto syDto = syMapper.nickNameCheck(param);
+		int count = Integer.parseInt(syDto.getNickName());
+		if (count > 0) {
+			isOk = true;
+		} else {
+			isOk = false;
+		}
+
+		return isOk;
+	}
 	
 }

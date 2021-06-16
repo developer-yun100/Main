@@ -48,14 +48,6 @@ public class SyController {
 		return "redirect:/";
 	}
 	
-	// 시스템 관리 화면
-	@RequestMapping(value = "/sy2010.yh")
-	public String sy2010(Model model) {
-		List<Sy1010Dto> userList = syService.userList();
-		model.addAttribute("userList", userList);
-		return "/sy/sy2010";
-	}
-
 	// 회원가입 팝업
 	@RequestMapping(value = "/sy1010pop.yh")
 	public String sy1010(Model model) {
@@ -67,6 +59,21 @@ public class SyController {
 	public String sy1011(Model model) {
 		return "/sy/sy1011pop";
 	}
+	
+	// 시스템 관리 화면
+	@RequestMapping(value = "/sy2010.yh")
+	public String sy2010(Model model) {
+		List<Sy1010Dto> userList = syService.userList();
+		model.addAttribute("userList", userList);
+		return "/sy/sy2010";
+	}
+	
+	// 시스템 관리 화면
+	@RequestMapping(value = "/sy2020.yh")
+	public String sy2020(Model model) {
+		return "/sy/sy2020";
+	}
+
 	
 	// 로그인
 	@RequestMapping(value = "/loginCheck.act")
@@ -104,6 +111,17 @@ public class SyController {
 		// form data
 		Sy1010Dto form = params.getForm(Sy1010Dto.class);
 		JsonBinder entity = new JsonBinder();
+		
+		// 아이디 체크
+		if(syService.userIdCheck(form)) {
+			return entity.returnJSON("000B");
+		}
+		
+		// 닉네임 체크
+		if(syService.nickNameCheck(form)) {
+			return entity.returnJSON("000C");
+		}
+		
 		return entity.jsonEntity(syService.signUp(form));
 	}
 	

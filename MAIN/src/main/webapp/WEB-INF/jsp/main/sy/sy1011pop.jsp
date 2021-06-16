@@ -34,7 +34,7 @@ function loginCheck(){
 				opener.location.reload();
 				window.close();
 			} else {
-				alert("로그인 실패");
+				alert("아이디와 비밀번호를 확인 해 주세요.");
 			}
 			
 			/* for (var i = 0; i< result.length; i++) {
@@ -87,7 +87,7 @@ function loginCheck(){
 				</form>
 	
 				<div class="ui message">
-					회원이 아니라면 지금바로 회원가입 하세요<a href="/sy/sy1010.yh">회원가입</a>
+					회원이 아니라면 지금바로 회원가입 하세요 <a href="/sy/sy1010pop.yh"> 회원가입</a>
 				</div>
 			</div>
 		</div>

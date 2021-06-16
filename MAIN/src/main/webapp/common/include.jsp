@@ -19,6 +19,11 @@
 	
 	<!-- 공통 JS  -->
 	<script type="text/javascript" src="../js/common.js"></script>
+	
+	<!-- 공통 CSS  -->
+	<link type="text/css" rel="stylesheet" href="../css/egovframework/dataGraph.css"/>
+	
+	
 <title></title>
 </head>
 <body>

@@ -19,8 +19,10 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		String requestUrl = request.getRequestURI();
 		LOG.debug("request URL : " + requestUrl);
 		
+		// sy20 / 관리자 화면
+		
 		if(!UserInfoSession.isLogin()) {
-			if(requestUrl.contains("/bo")) {
+			if(requestUrl.contains("/bo") || requestUrl.contains("/us")) {
 				response.sendRedirect("/sy/interceptor.yh");
 				return false;
 			} else if(requestUrl.contains("/sy/sy20")) {

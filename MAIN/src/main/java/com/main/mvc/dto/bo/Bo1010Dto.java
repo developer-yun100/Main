@@ -30,4 +30,6 @@ public @Data class Bo1010Dto {
 	 private String subScrYn;
 	 private String boardClick;
 	 
+	 private String rownum;
+	 
 }

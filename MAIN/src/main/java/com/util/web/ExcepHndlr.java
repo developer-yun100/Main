@@ -12,6 +12,6 @@ public class ExcepHndlr implements ExceptionHandler {
 
 	@Override
 	public void occur(Exception ex, String packageName) {
-		LOGGER.debug(" 서비스 익센션 테스트 ");
+		LOGGER.debug(packageName + " 에서 error generate : " + ex.getMessage());
 	}
 }
