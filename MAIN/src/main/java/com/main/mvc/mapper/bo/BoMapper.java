@@ -17,8 +17,11 @@ public interface BoMapper {
 	
 	public List<Bo1010Dto> contentMyList(Bo1010Dto param);
 	
-	// 페이징
+	// 페이징 조회
 	public List<Bo1010Dto> channelDetailListTwo(Bo1010Dto param);
+	
+	// 페이징 숫자
+	public Bo1010Dto searchPaging(Bo1010Dto param);
 	
 	// 게시글 댓글 등록
 	public int commentInsert(Bo1010Dto param);

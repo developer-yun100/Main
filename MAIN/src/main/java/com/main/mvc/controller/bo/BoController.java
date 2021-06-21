@@ -44,8 +44,16 @@ public class BoController {
 	// 채널 목록 조회
 	@RequestMapping(value = "/bo1010.yh")
 	public String bo1010(Bo1010Dto bo1010Dto, Model model) {
-		List<Bo1010Dto> channelList = boService.channelList(bo1010Dto);
-		model.addAttribute("channelList", channelList);
+		
+		// 기본 1 셋팅
+		bo1010Dto.setRownum("1");
+		/*List<Bo1010Dto> channelList = boService.channelList(bo1010Dto);
+		model.addAttribute("channelList", channelList);*/
+		
+		// 페이징
+		List<Bo1010Dto> pagingList = boService.searchPaging(bo1010Dto);
+		model.addAttribute("pagingList", pagingList);
+		
 		return "/bo/bo1010";
 	}
 	
@@ -75,6 +83,16 @@ public class BoController {
 		boService.contentIncheck(bo1010Dto);
 
 		return "/bo/bo1012";
+	}
+	
+	// 채널 게시글 검색 조회
+	@RequestMapping(value = "/searchDetail.act")
+	@ResponseBody
+	public Map<String, Object> searchDetail(@RequestBody ParamDto params, Model model) throws Exception {
+		Bo1010Dto form = params.getForm(Bo1010Dto.class);
+		JsonBinder entity = new JsonBinder();
+		List<Bo1010Dto> searchDetail = boService.channelDetailList(form);
+		return entity.jsonEntityList(searchDetail);
 	}
 	
 	// 채널생성 팝업
@@ -203,6 +221,10 @@ public class BoController {
 		JsonBinder entity = new JsonBinder();
 		return entity.jsonEntity(boService.commentInsert(form));
 	}
+	
+	
+	
+	
 	
 	
 }

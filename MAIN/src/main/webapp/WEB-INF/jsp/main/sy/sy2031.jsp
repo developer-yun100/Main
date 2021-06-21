@@ -6,9 +6,10 @@
 <html>
 <head>
 	<jsp:include page="/common/include.jsp" flush="false"/>
-<title>채팅하기</title>
+<title>화면 권한 관리</title>
 </head>
 <body>
+
 	
 	<jsp:include page="/common/pageInclude/mainMenu.jsp" flush="false"/>
 	<div class="pusher">
@@ -19,6 +20,6 @@
 		
 		<jsp:include page="/common/pageInclude/mainDownPage.jsp" flush="false"/>
 	</div>
-	
+
 </body>
 </html>

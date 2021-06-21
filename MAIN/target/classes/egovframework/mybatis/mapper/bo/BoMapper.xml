@@ -3,19 +3,27 @@
 <mapper namespace="com.main.mvc.mapper.bo.BoMapper">
 	
 	<select id="channelList" resultType="Bo1010Dto">
-		SELECT ch.CHID as chId
-			 , ch.CHNO as chNo
-			 , ch.CHNAME as chName
-			 , ch.CHOPENNAME as chOpenName
-			 , (SELECT COUNT(*)
-		          FROM HYCHANNELSCR cs
-		         WHERE cs.useYn = 'Y'
-		           AND cs.chId = ch.chId) as chUserCount
-			 , ch.REGDATE as regDate
-			 , ch.MODDATE as modDate
-			 , ch.USEYN as useYn
-		  FROM HYCHANNEL ch
-		 WHERE useYn = 'Y'
+		SELECT chs.*
+		  FROM (SELECT rownum as rownums
+		             , ch.CHID as chId
+		             , ch.CHNO as chNo
+		   	         , ch.CHNAME as chName
+		   	         , ch.CHOPENNAME as chOpenName
+		   	         , (SELECT COUNT(*)
+		   	              FROM HYCHANNELSCR cs
+		   	             WHERE cs.useYn = 'Y'
+		   	               AND cs.chId = ch.chId) as chUserCount
+		   	         , ch.REGDATE as regDate
+		   	         , ch.MODDATE as modDate
+		   	         , ch.USEYN as useYn
+		          FROM HYCHANNEL ch
+		         WHERE useYn = 'Y'
+		         ORDER BY TO_NUMBER(ch.CHNO) ASC) chs
+		 WHERE 1=1 
+		 <if test='rownum != null and rownum != "" '>
+   		   AND rownums BETWEEN DECODE(NVL(#{rownum}, 1), 1, 1, ((#{rownum} -1) * 10) + 1)
+           AND NVL(#{rownum}, 1) * 10
+         </if>
 		 <if test='chName != null and chName != "" '>
 		   AND CHNAME LIKE '%' || #{chName} || '%'
 		 </if>
@@ -34,7 +42,7 @@
 		 WHERE CHID = #{chId}
 	</select>
 	
-	<select id="channelDetailList" resultType="Bo1010Dto">
+<!-- 	<select id="channelDetailList" resultType="Bo1010Dto">
 		SELECT CHID as chId
 		     , CHDEID as chDeId
 		     , CHDENO as chDeNo
@@ -50,8 +58,43 @@
 		  FROM HYCHANNELDE
 		 WHERE useYn = 'Y'
 		   AND CHID = #{chId}
+		 <if test='title != null and title != "" '>
+		   AND TITLE LIKE '%' || #{title} || '%'
+		 </if>
 		 ORDER BY TO_NUMBER(chDeNo) DESC
+	</select> -->
+	
+	<select id="channelDetailList" resultType="Bo1010Dto">
+		SELECT detail.* 
+ 		  FROM ( SELECT rownum as rownums
+ 		              , de.*
+           		   FROM (SELECT CHID as chId
+                      	      , CHDEID as chDeId
+                      		  , CHDENO as chDeNo
+                      		  , CHNAME as chName
+                      		  , REGUSERID as regUserId
+				              , REGNICKNAME as regNickName
+				              , TITLE as title
+				              , CONTENT as content
+				              , NVL(INCHECK, 0) as inCheck
+				              , REGDATE as regDate
+				              , MODDATE as modDate
+				              , USEYN as useYn
+				           FROM HYCHANNELDE
+                          WHERE useYn = 'Y'
+                            AND CHID = #{chId}
+                          ORDER BY TO_NUMBER(CHDENO) DESC ) de
+                   WHERE de.useYn = 'Y') detail
+         WHERE 1=1
+    	<if test='rownum != null and rownum != "" '>
+   		   AND detail.rownums BETWEEN DECODE(NVL(#{rownum}, 1), 1, 1, ((#{rownum} -1) * 10) + 1)
+           AND NVL(#{rownum}, 1) * 10
+    	</if>
+    	<if test='title != null and title != "" '>
+		   AND detail.TITLE LIKE '%' || #{title} || '%'
+		</if>
 	</select>
+	
 	
 	<select id="channelDetailListTwo" resultType="Bo1010Dto" >
 		SELECT rownum, de.* 
@@ -72,7 +115,10 @@
 		            AND CHID = #{chId}
 		          ORDER BY TO_NUMBER(chDeNo) DESC
 		        ) de
-		 WHERE rownum BETWEEN #{rownum} AND #{rownum}
+		 WHERE 1=1
+		<if test='rownum != null and rownum != "" '>
+		   AND rownum BETWEEN #{rownum} AND #{rownum}+2
+		</if>
 	</select>
 	
 	<select id="channelDetatilData" resultType="Bo1010Dto">
@@ -291,5 +337,17 @@
 		 WHERE cs.useYn = 'Y'
 		   AND cs.userId = #{userId}
 	</select>
+	
+	
+	<select id="searchPaging" resultType="Bo1010Dto">
+		SELECT COUNT(*) as rowCount
+		  FROM HYCHANNEL
+		 WHERE useYn = 'Y'
+		<if test='chName != null and chName != "" '>
+		   AND CHNAME LIKE '%' || #{chName} || '%'
+		</if>
+	</select>
+	
+	
 	
 </mapper>

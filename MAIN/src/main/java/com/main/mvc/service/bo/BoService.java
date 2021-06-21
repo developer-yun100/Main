@@ -1,5 +1,6 @@
 package com.main.mvc.service.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,6 +19,9 @@ public class BoService {
 	BoMapper boMapper;
 	
 	public List<Bo1010Dto> channelList(Bo1010Dto param){
+		if(param.getRownum() == null || "".equals(param.getRownum())) {
+			param.setRownum("1");
+		}
 		return boMapper.channelList(param);
 	}
 	
@@ -58,6 +62,30 @@ public class BoService {
 		param.setUserId(UserInfoSession.getUser().getUserId());
 		return  boMapper.scrContentList(param);
 	}
+	
+	public List<Bo1010Dto> searchPaging(Bo1010Dto param){
+		List<Bo1010Dto> boDto = new ArrayList<Bo1010Dto>();
+		// DB 로우 수
+		Bo1010Dto rowCount = boMapper.searchPaging(param);
+		int row = Integer.parseInt(rowCount.getRowCount());
+		param.setStartPage("1");
+		
+		// 페이징 처리는 10개 당 1개
+		int pagingCount = 10;
+		int paging = 1;
+		
+		// 10개당 1페이지
+		for(int i = 0; i < row; i++) {
+			if(i > pagingCount) {
+				pagingCount += 10;
+				paging += 1;
+			}
+		}
+		param.setLastPage(String.valueOf(paging));
+		boDto.add(param);
+		return boDto;
+	}
+	
 	
 	// 채널 개설
 	@Transactional

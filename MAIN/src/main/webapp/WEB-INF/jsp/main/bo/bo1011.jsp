@@ -9,6 +9,31 @@
 	<jsp:include page="/common/include.jsp" flush="false"/>
 <script type="text/javascript">
 
+
+$(document).ready(function() {
+	var jsonData ={};
+    jsonData["form"] = $('form[name="pageForm"]').serializeObject();
+    searchDataDetail(jsonData, "/bo/searchDetail.act");
+});
+
+function searchTitle(){
+    var searchtitle = $("#searchtitlev").val();
+	$("#title").val(searchtitle);
+	
+	var jsonData ={};
+    jsonData["form"] = $('form[name="pageForm"]').serializeObject();
+    searchDataDetail(jsonData, "/bo/searchDetail.act");
+	
+}
+
+function pageNumbers(param){
+	$("#rownum").val(param);
+	var jsonData ={};
+    jsonData["form"] = $('form[name="pageForm"]').serializeObject();
+    searchDataDetail(jsonData, "/bo/searchDetail.act");
+}
+
+
 function contentDetail(param){
 	location.href="/bo/bo1012.yh?chDeId="+param;
 }
@@ -79,6 +104,8 @@ function subScribeCancel(){
 <body>
 <form name="pageForm">
 	<input type="hidden" id="deComment" name="deComment" />
+	<input type="hidden" id="rownum" name="rownum" />
+	<input type="hidden" id="title" name="title" />
 	<input type="hidden" id="chId" name="chId" value="${channelHeader.chId}" />
 	<input type="hidden" id="userId" name="userId" value="${sessionScope.S_USERINFO.userId}"/>
 	<input type="hidden" id="chName" name="chName" value="${channelHeader.chName}" />
@@ -94,9 +121,9 @@ function subScribeCancel(){
 			<h3>게시글 검색</h3>
 			<div class="ui inverted segment">
 			<div class="ui action input">
-				<input type="text" id="" name="" placeholder="Search..." />
+				<input type="text" id="searchtitlev" />
 				<button class="ui icon button">
-					<i class="search icon"></i>
+					<i class="search icon" onclick="searchTitle();"></i>
 				</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<button class="ui inverted red button" onclick="contentPush('${channelHeader.chId}');">글쓰기</button>
@@ -110,7 +137,7 @@ function subScribeCancel(){
 				</div>
 			</div>
 			<h3>${channelHeader.chName} 채널</h3>
-			<table class="ui selectable inverted table">
+			<table class="ui selectable inverted table" id="tableDataDe">
 				<thead>
 					<tr>
 						<th>No</th>
@@ -122,21 +149,12 @@ function subScribeCancel(){
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="dto" items="${channelDetailList}" varStatus="status">
-						<tr onclick="contentDetail('${dto.chDeId}');">
-							<td>${dto.chDeNo}</td>
-							<td style="width:300px;">${dto.chName}</td>
-							<td style="width:400px;">${dto.title}</td>
-							<td style="width:250px;">${dto.regNickName}</td>
-							<td style="width:250px;">${dto.regDate}</td>
-							<td class="right aligned">${dto.inCheck}</td>
-						</tr>
-					</c:forEach>
+					
 				</tbody>
 			</table>
 			<div class="ui borderless menu">
-				<a class="item">1</a> 
-				<a class="item">2</a> 
+				<a class="item" onclick="pageNumbers('1');">1</a> 
+				<a class="item" onclick="pageNumbers('2');">2</a> 
 				<a class="item">3</a> 
 				<a class="item">4</a> 
 				<a class="item">5</a> 

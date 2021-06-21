@@ -53,6 +53,19 @@ public class UsController {
 		return "/us/us1013";
 	}
 	
+	// 친구 쪽지 관리
+	@RequestMapping(value = "/us1020.yh")
+	public String us1020(Model model) {
+		return "/us/us1020";
+	}
+	
+	// 이벤트 관리
+	@RequestMapping(value = "/us1030.yh")
+	public String us1030(Model model) {
+		return "/us/us1030";
+	}
+	
+	
 	// 프로필 변경
 	@RequestMapping(value = "/proFileChange.act")
 	@ResponseBody

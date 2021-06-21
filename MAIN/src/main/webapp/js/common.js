@@ -22,7 +22,7 @@ $.fn.serializeObject = function(){
    return obj;
 };
 
-// formData JSON table
+// formData JSON channel table
 function searchData(jsonData, url){
 	
 	$.ajax({
@@ -54,6 +54,40 @@ function searchData(jsonData, url){
 	
 }
 
+//formData JSON channel table
+function searchDataDetail(jsonData, url){
+	
+	$.ajax({
+		url : url,
+		type : "post",
+		async : true,
+		dataType : 'json',
+		contentType : "application/json; charset=UTF-8",
+		data : JSON.stringify(jsonData),
+		success : function(response) {
+			var result = JSON.parse(response.data);
+			var arr = result.data;
+			$('#tableDataDe > tbody > tr').remove();
+			$.each(arr, function(index, item){
+				var row;
+				row += '<tr onclick="contentDetail('+"'"+ item.chDeId +"'"+');">';
+				row += '<td>' + item.chDeNo +'</td>';
+				row += '<td style="width:150px;">' + item.chName +'</td>';
+				row += '<td style="width:200px;">' + item.title +'</td>';
+				row += '<td style="width:100px;">' + item.regNickName +'</td>';
+				row += '<td>' + item.regDate +'</td>';
+				row += '<td class="center aligned">' + item.inCheck +'</td>';
+				row += "</tr>";
+				$("#tableDataDe > tbody:last").append(row);
+			});
+						
+		},
+		error : function(request, status, error) {
+			console.log("일시적인 장애로 인한 처리불가");
+		}
+	});
+	
+}
 
 
 // 로그인

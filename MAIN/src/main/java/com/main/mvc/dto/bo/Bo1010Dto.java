@@ -31,5 +31,8 @@ public @Data class Bo1010Dto {
 	 private String boardClick;
 	 
 	 private String rownum;
+	 private String rowCount;
+	 private String startPage;
+	 private String lastPage;
 	 
 }

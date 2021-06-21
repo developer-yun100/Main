@@ -40,8 +40,8 @@
 					<div class="menu">
 						<a class="item" href="/sy/sy2010.yh">사용자 관리</a>
 						<a class="item" href="/sy/sy2020.yh">데이터 관리</a>
-						<a class="item" href="/sy/construct.yh">화면 관리</a> 
-						<a class="item" href="/sy/construct.yh">화면 권한 관리</a>
+						<a class="item" href="/sy/sy2030.yh">화면 관리</a> 
+						<a class="item" href="/sy/sy2031.yh">화면 권한 관리</a>
 					</div>
 				</div>
 			</c:if>
@@ -60,8 +60,8 @@
 				<div class="header">사용자 관리</div>
 				<div class="menu">
 					<a class="item" href="/us/us1010.yh">계정 설정</a>
-					<a class="item" href="/sy/construct.yh">친구/쪽지 관리</a>
-					<a class="item" href="/sy/construct.yh">이벤트 관리</a> 
+					<a class="item" href="/us/us1020.yh">친구/쪽지 관리</a>
+					<a class="item" href="/us/us1030.yh">이벤트 관리</a> 
 				</div>
 			</div>
 			

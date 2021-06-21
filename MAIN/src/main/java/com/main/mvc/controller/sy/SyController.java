@@ -60,7 +60,7 @@ public class SyController {
 		return "/sy/sy1011pop";
 	}
 	
-	// 시스템 관리 화면
+	// 사용자 관리 화면
 	@RequestMapping(value = "/sy2010.yh")
 	public String sy2010(Model model) {
 		List<Sy1010Dto> userList = syService.userList();
@@ -68,13 +68,24 @@ public class SyController {
 		return "/sy/sy2010";
 	}
 	
-	// 시스템 관리 화면
+	// 데이터 관리 화면
 	@RequestMapping(value = "/sy2020.yh")
 	public String sy2020(Model model) {
 		return "/sy/sy2020";
 	}
 
-	
+	// 화면 관리 화면
+	@RequestMapping(value = "/sy2030.yh")
+	public String sy2030(Model model) {
+		return "/sy/sy2030";
+	}
+
+	// 화면 권한 관리 화면
+	@RequestMapping(value = "/sy2031.yh")
+	public String sy2031(Model model) {
+		return "/sy/sy2031";
+	}
+
 	// 로그인
 	@RequestMapping(value = "/loginCheck.act")
 	@ResponseBody
