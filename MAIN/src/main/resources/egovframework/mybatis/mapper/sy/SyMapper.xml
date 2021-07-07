@@ -26,6 +26,7 @@
 			 , REGDATE as regDate
 			 , MODDATE as modDate
 			 , useYn as useYn
+			 , PROFILEIMG as proFileImg
 		  FROM HYUSERS
 		 WHERE userId = #{userId}
 		   AND passWord = #{passWord}

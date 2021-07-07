@@ -112,7 +112,7 @@ public class FileManager {
 	     }
 		
 		// 임시 조치
-		if (port == 10076) {
+		if (port == 10076 || port == 80) {
 			path = "C:\\tomcat\\boardImages\\profileImages";
 		} else {
 			path = "C:\\testWar\\boardImages\\profileImages";

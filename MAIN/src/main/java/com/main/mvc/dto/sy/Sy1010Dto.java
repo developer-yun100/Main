@@ -16,5 +16,5 @@ public @Data class Sy1010Dto {
 	private String modDate;
 	private String useYn;
 	private String userLogin;
-
+	private String proFileImg;
 }

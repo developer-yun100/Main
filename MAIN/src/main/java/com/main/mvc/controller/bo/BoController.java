@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +31,10 @@ import com.main.mvc.service.bo.BoService;
 @RequestMapping(value = "/bo", produces="application/json;charset=utf-8")
 public class BoController {
 	
-	@Resource
+	/*@Resource
+	BoService boService;*/
+	
+	@Autowired
 	BoService boService;
 	
 	// 게시글 작성
@@ -184,7 +188,7 @@ public class BoController {
 		PrintWriter pw;
 		String ipPort;
 		
-		if(port == 10076) {
+		if(port == 10076 || port == 80) {
 			ipPort = "http://yh.developeryun.kr";
 		} else {
 			ipPort = "http://" + ip + ":" + String.valueOf(port);

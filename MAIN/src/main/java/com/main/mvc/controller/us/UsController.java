@@ -48,9 +48,9 @@ public class UsController {
 	}
 	
 	// 채팅
-	@RequestMapping(value = "/us1013.yh")
+	@RequestMapping(value = "/us1013pop.yh")
 	public String us1013(Model model) {
-		return "/us/us1013";
+		return "/us/us1013pop";
 	}
 	
 	// 친구 쪽지 관리
@@ -80,9 +80,6 @@ public class UsController {
 	// 이메일 변경
 	
 	// 비밀번호 변경
-	
-	
-	
 	
 	
 }

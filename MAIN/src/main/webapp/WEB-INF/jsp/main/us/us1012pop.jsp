@@ -9,6 +9,15 @@
 	<jsp:include page="/common/include.jsp" flush="false"/>
 <title>친구 목록</title>
 </head>
+<script type="text/javascript">
+
+function chatPop(){
+	window.open("/us/us1013pop.yh", "채팅", "width=650px, height=750px, resizable=no, scrollbars=yes, location=no, left=-30, top=-50");
+}
+
+</script>
+
+
 <body>
 	<br />
 	<div class="ui text container">
@@ -16,38 +25,28 @@
 		<div class="column">
 			<h3 class="ui header">
 				친구목록
-				<div class="sub header">친구들</div>
 			</h3>
 		</div>
 			<div class="column">
 				<table class="ui celled table">
 					<thead>
 						<tr>
-							<th>닉네임</th>
-							<th>쪽지쓰기</th>
+							<th>방 이름</th>
+							<th>관리자 쪽지</th>
 							<th>채팅하기</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td data-label="Name">아무개</td>
-							<td data-label="Age">쪽지</td>
-							<td data-label="Age">채팅</td>
-						</tr>
-						<tr>
-							<td data-label="Name">이쑤시개</td>
-							<td data-label="Age">쪽지</td>
-							<td data-label="Age">채팅</td>
-						</tr>
-						<tr>
-							<td data-label="Name">시계바늘만처다보는개</td>
-							<td data-label="Age">쪽지</td>
-							<td data-label="Age">채팅</td>
+							<td data-label="Name">오픈 채팅</td>
+							<td data-label="Age" style="cursor:pointer; color:#5882FA;" onClick="alert('준비중 입니다.');">쪽지</td>
+							<td data-label="Age" style="cursor:pointer; color:#5882FA;" onClick="chatPop();">접속</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
+
 	</div>
 
 </body>

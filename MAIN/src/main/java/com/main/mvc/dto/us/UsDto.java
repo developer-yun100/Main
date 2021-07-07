@@ -9,5 +9,6 @@ public @Data class UsDto {
 	private String email;
 	private String regDate;
 	private String proFileImgUrl;
+	private String sendText;
 
 }

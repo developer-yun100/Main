@@ -8,7 +8,7 @@
 	<version>1.0.0</version>
 	<name>MAIN</name>
 	<url>http://www.egovframe.go.kr</url>
-
+	
 	<licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -83,12 +83,19 @@
 			<version>${egovframework.rte.version}</version>
 		</dependency>
 
-        <dependency>
+       <!--  <dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>servlet-api</artifactId>
 		    <scope>provided</scope>
 		    <version>2.5</version>
-        </dependency>
+        </dependency> -->
+
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.0.1</version>
+		    <scope>provided</scope>
+		</dependency>
 
         <dependency>
 		    <groupId>javax.servlet</groupId>
@@ -229,6 +236,11 @@
             <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc-14.jar</systemPath>
         </dependency>
         -->
+        <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-websocket</artifactId>
+	        <version>4.3.22.RELEASE</version>
+        </dependency>
         
         
 	</dependencies>

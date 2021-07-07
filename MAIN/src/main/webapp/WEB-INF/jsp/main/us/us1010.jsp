@@ -25,23 +25,31 @@
 
 function proFileChange(){
 	
-	/* var jsonData ={};
-    jsonData["form"] = $('form[name="pageForm"]').serializeObject(); */
-	
-    /* var form = $("#pageForm").val();
-    console.log(form);
-    var formData = new FormData(form); */
+    // 파일 체크
+	var fileNameCheck = $("#embedpollfileinput").val().toLowerCase().split('.');
+	var fileExten = fileNameCheck[fileNameCheck.length - 1];
+    var fileNameArray = ['jpg', 'png', 'jpeg', 'bmp', 'rle', 'dib', 'gif'];
+    var fileIsOk = false;
     
+    for(var i = 0; i <= fileNameArray.length; i++){
+    	if(fileExten == fileNameArray[i]){
+    		fileIsOk = true;
+    	}
+    }
     
-    var form = $("#fileForm")[0];
-    var formDate = new FormData(form);
+    if(!fileIsOk){
+    	alert("이미지 파일만 업로드 가능합니다.");
+    	return false;
+    }
+    
+    var file = $("#fileForm")[0];
+    var formDate = new FormData(file);
+    
     
 	$.ajax({
 		url : '/us/proFileChange.act',
 		type : "post",
 		async : true,
-		// dataType : 'json',
-		// contentType : "application/json; charset=UTF-8",
 		enctype: 'multipart/form-data',
 		processData : false,
 		contentType : false,
